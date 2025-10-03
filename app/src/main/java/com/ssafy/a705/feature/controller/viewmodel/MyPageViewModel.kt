@@ -5,8 +5,8 @@ import androidx.lifecycle.viewModelScope
 import com.ssafy.a705.feature.controller.service.MyPageService
 import com.ssafy.a705.feature.controller.service.WithService
 import com.ssafy.a705.common.network.base.ApiException
-import com.ssafy.a705.feature.model.resp.BoardDto
-import com.ssafy.a705.feature.model.resp.MyCommentDto
+import com.ssafy.a705.feature.board.data.model.response.BoardDto
+import com.ssafy.a705.feature.board.data.model.response.MyCommentDto
 import com.ssafy.a705.feature.model.resp.MyProfileResponse
 import com.ssafy.a705.common.network.sign.KakaoAuthManager
 import dagger.hilt.android.lifecycle.HiltViewModel

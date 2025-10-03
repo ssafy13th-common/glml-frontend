@@ -1,4 +1,4 @@
-package com.ssafy.a705.feature.model.resp
+package com.ssafy.a705.feature.board.data.model.response
 
 data class CommentResponse(
     val id: Long,

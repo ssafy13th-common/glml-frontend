@@ -45,7 +45,7 @@ import com.ssafy.a705.feature.group.common.component.GroupStatusChipSize
 import com.ssafy.a705.feature.group.common.component.GroupTopBar
 import com.ssafy.a705.feature.group.common.model.ChatMessage
 import com.ssafy.a705.feature.group.common.model.MessageStatus
-import com.ssafy.a705.feature.with.CommentInputBar
+import com.ssafy.a705.feature.board.ui.view.CommentInputBar
 import java.time.Instant
 import java.time.LocalDate
 import java.time.LocalDateTime

@@ -7,7 +7,7 @@ import com.ssafy.a705.common.network.GroupApiService
 import com.ssafy.a705.common.network.LiveLocationStatusApi
 import com.ssafy.a705.common.network.mypage.MypageApi
 import com.ssafy.a705.common.network.sign.SignApi
-import com.ssafy.a705.common.network.with.WithApi
+import com.ssafy.a705.feature.board.data.source.BoardApi
 import com.ssafy.a705.feature.signup.SignupApi
 import com.ssafy.a705.feature.record.MapApi
 import com.ssafy.a705.feature.record.RecordApi
@@ -83,8 +83,8 @@ object NetworkModule {
     @Provides @Singleton fun provideMypageApi(retrofit: Retrofit): MypageApi =
         retrofit.create(MypageApi::class.java)
 
-    @Provides @Singleton fun provideWithApi(retrofit: Retrofit): WithApi =
-        retrofit.create(WithApi::class.java)
+    @Provides @Singleton fun provideWithApi(retrofit: Retrofit): BoardApi =
+        retrofit.create(BoardApi::class.java)
 
     // 그룹 API도 공용 Retrofit 사용 (별도 2중 헤더/전용 Gson 제거)
     @Provides

@@ -1,5 +1,4 @@
-package com.ssafy.a705.feature.with.model
-
+package com.ssafy.a705.feature.board.data.model
 
 data class WithPost(
     val id: Long,

@@ -1,4 +1,4 @@
-package com.ssafy.a705.feature.with
+package com.ssafy.a705.feature.board.ui.view
 
 import android.widget.Toast
 import androidx.compose.foundation.Image
@@ -35,8 +35,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import com.ssafy.a705.R
 import com.ssafy.a705.common.components.HeaderRow
-import com.ssafy.a705.feature.controller.viewmodel.WithViewModel
-import com.ssafy.a705.feature.model.resp.WithPostDto
+import com.ssafy.a705.feature.board.ui.viewmodel.BoardViewModel
+import com.ssafy.a705.feature.board.data.model.response.WithPostDto
 
 
 @Composable
@@ -44,7 +44,7 @@ fun WithMainScreen(
     onNavigateToDetail: (Long) -> Unit,
     onBack: () -> Unit,
     onNavigateToWrite: () -> Unit,
-    viewModel: WithViewModel = hiltViewModel()
+    viewModel: BoardViewModel = hiltViewModel()
 ) {
     val lifecycleOwner = LocalLifecycleOwner.current
 

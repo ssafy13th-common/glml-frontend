@@ -1,12 +1,12 @@
-package com.ssafy.a705.feature.controller.viewmodel
+package com.ssafy.a705.feature.board.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ssafy.a705.feature.controller.service.WithService
 import com.ssafy.a705.feature.model.req.CommentRequest
-import com.ssafy.a705.feature.model.resp.CommentDto
-import com.ssafy.a705.feature.model.resp.CommentResponse
-import com.ssafy.a705.feature.with.model.WithPost
+import com.ssafy.a705.feature.board.data.model.CommentDto
+import com.ssafy.a705.feature.board.data.model.response.CommentResponse
+import com.ssafy.a705.feature.board.data.model.WithPost
+import com.ssafy.a705.feature.board.data.repository.BoardRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -17,8 +17,8 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class WithPostDetailViewModel @Inject constructor(
-    private val withService: WithService
+class PostDetailViewModel @Inject constructor(
+    private val boardRepository: BoardRepository
 ) : ViewModel() {
 
     /** 현재 보고 있는 게시글 ID */
@@ -40,7 +40,7 @@ class WithPostDetailViewModel @Inject constructor(
     fun loadPost(postId: Long) {
         currentPostId = postId
         viewModelScope.launch {
-            runCatching { withService.getPostDetail(postId) }
+            runCatching { boardRepository.getPostDetail(postId) }
                 .onSuccess { data ->
                     _post.value = WithPost(
                         id = postId,
@@ -61,7 +61,7 @@ class WithPostDetailViewModel @Inject constructor(
     /** 게시글 삭제 */
     fun deletePost(onSuccess: () -> Unit, onFailure: (Throwable) -> Unit) {
         viewModelScope.launch {
-            runCatching { withService.deletePost(currentPostId) }
+            runCatching { boardRepository.deletePost(currentPostId) }
                 .onSuccess { onSuccess() }
                 .onFailure { e ->
                     e.printStackTrace()
@@ -79,7 +79,7 @@ class WithPostDetailViewModel @Inject constructor(
     ) {
         viewModelScope.launch {
             runCatching {
-                withService.writeComment(
+                boardRepository.writeComment(
                     currentPostId,
                     CommentRequest(content = content, parentId = parentId)
                 )
@@ -98,7 +98,7 @@ class WithPostDetailViewModel @Inject constructor(
     fun updateComment(commentId: Long, content: String) {
         viewModelScope.launch {
             runCatching {
-                withService.updateComment(
+                boardRepository.updateComment(
                     boardId = currentPostId,
                     commentId = commentId,
                     request = CommentRequest(content = content)
@@ -112,7 +112,7 @@ class WithPostDetailViewModel @Inject constructor(
     /** 댓글 삭제 */
     fun deleteComment(commentId: Long, onFailure: ((Throwable) -> Unit)? = null) {
         viewModelScope.launch {
-            runCatching { withService.deleteComment(currentPostId, commentId) }
+            runCatching { boardRepository.deleteComment(currentPostId, commentId) }
                 .onSuccess { refreshCommentsMerge() }
                 .onFailure {
                     it.printStackTrace()
@@ -123,7 +123,7 @@ class WithPostDetailViewModel @Inject constructor(
 
     /** 서버 최신 댓글로 평면 리스트 갱신 */
     private suspend fun refreshCommentsMerge() {
-        val fresh = withService.getPostDetail(currentPostId).comments
+        val fresh = boardRepository.getPostDetail(currentPostId).comments
         _flat.value = fresh
     }
 

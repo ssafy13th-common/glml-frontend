@@ -49,10 +49,10 @@ import com.ssafy.a705.feature.signup.SignupEmailVerifyViewModel
 import com.ssafy.a705.feature.signup.SignupNavRoutes
 import com.ssafy.a705.feature.signup.SignupScreen
 import com.ssafy.a705.feature.signup.SignupViewModel
-import com.ssafy.a705.feature.with.WithChatScreen
-import com.ssafy.a705.feature.with.WithMainScreen
-import com.ssafy.a705.feature.with.WithPostDetailScreen
-import com.ssafy.a705.feature.with.WithPostWriteScreen
+import com.ssafy.a705.feature.board.ui.view.WithChatScreen
+import com.ssafy.a705.feature.board.ui.view.WithMainScreen
+import com.ssafy.a705.feature.board.ui.view.WithPostDetailScreen
+import com.ssafy.a705.feature.board.ui.view.WithPostWriteScreen
 
 @Composable
 fun NavGraph(

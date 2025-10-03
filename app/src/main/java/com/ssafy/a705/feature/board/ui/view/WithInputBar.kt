@@ -1,4 +1,4 @@
-package com.ssafy.a705.feature.with
+package com.ssafy.a705.feature.board.ui.view
 
 import androidx.compose.ui.Alignment
 import androidx.compose.foundation.Image

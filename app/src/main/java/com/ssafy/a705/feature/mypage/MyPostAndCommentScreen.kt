@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ssafy.a705.feature.controller.viewmodel.MyPageViewModel
-import com.ssafy.a705.feature.model.resp.BoardDto
+import com.ssafy.a705.feature.board.data.model.response.BoardDto
 import kotlinx.coroutines.launch
 import kotlin.collections.distinctBy
 import kotlin.collections.filter

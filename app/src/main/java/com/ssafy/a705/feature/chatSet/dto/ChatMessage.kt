@@ -1,4 +1,4 @@
-package com.ssafy.a705.feature.with.model
+package com.ssafy.a705.feature.chatSet.dto
 
 data class ChatMessage(
     val id: Int,

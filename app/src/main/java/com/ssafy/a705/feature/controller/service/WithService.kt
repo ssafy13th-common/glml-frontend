@@ -3,12 +3,12 @@ package com.ssafy.a705.feature.controller.service
 import com.ssafy.a705.common.network.base.ApiException
 import com.ssafy.a705.common.network.base.BaseResponse
 import com.ssafy.a705.feature.model.req.CommentRequest
-import com.ssafy.a705.feature.model.req.UpdatePostRequest
-import com.ssafy.a705.feature.model.req.WithPostWriteRequest
-import com.ssafy.a705.feature.model.resp.CommentResponse
-import com.ssafy.a705.feature.model.resp.CursorData
-import com.ssafy.a705.feature.model.resp.WithPostDetailData
-import com.ssafy.a705.feature.model.resp.WithPostWriteResponse
+import com.ssafy.a705.feature.board.data.model.request.UpdatePostRequest
+import com.ssafy.a705.feature.board.data.model.request.WritePostRequest
+import com.ssafy.a705.feature.board.data.model.response.CommentResponse
+import com.ssafy.a705.feature.board.data.model.response.CursorData
+import com.ssafy.a705.feature.board.data.model.response.WithPostDetailData
+import com.ssafy.a705.feature.board.data.model.response.WritePostResponse
 import com.ssafy.a705.common.network.ApiClient
 import javax.inject.Inject
 
@@ -37,8 +37,8 @@ class WithService @Inject constructor(
     }
 
     // 3) 글 작성
-    suspend fun writePost(request: WithPostWriteRequest): WithPostWriteResponse {
-        val res: BaseResponse<WithPostWriteResponse> = api.writePost(request)
+    suspend fun writePost(request: WritePostRequest): WritePostResponse {
+        val res: BaseResponse<WritePostResponse> = api.writePost(request)
         res.message?.let { throw ApiException(it) }
         return res.data
             ?: throw ApiException("새 글을 등록하는 중에 문제가 생겼습니다. 다시 한 번 눌러보실래요?")
