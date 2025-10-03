@@ -1,14 +1,14 @@
 package com.ssafy.a705.global.di
 
 import android.content.Context
-import com.ssafy.a705.chatSet.api.ChatApi
+import com.ssafy.a705.domain.chatSet.api.ChatApi
 import com.ssafy.a705.global.network.AuthInterceptor
 import com.ssafy.a705.global.network.GroupApiService
 import com.ssafy.a705.global.network.LiveLocationStatusApi
 import com.ssafy.a705.global.network.mypage.MypageApi
 import com.ssafy.a705.global.network.sign.SignApi
 import com.ssafy.a705.global.network.with.WithApi
-import com.ssafy.a705.signup.SignupApi
+import com.ssafy.a705.domain.signup.SignupApi
 import com.ssafy.a705.record.MapApi
 import com.ssafy.a705.record.RecordApi
 import com.ssafy.a705.tracking.TrackingApi
