@@ -49,7 +49,7 @@ class PostDetailViewModel @Inject constructor(
                         author = data.author,
                         authorEmail = data.authorEmail,
                         authorProfileUrl = data.authorProfileUrl,
-                        date = data.updatedDate,
+                        date = data.updatedAt,
                         commentCount = data.comments.size
                     )
                     _flat.value = data.comments // 🔁 원본 평면 리스트만 갱신
@@ -133,8 +133,8 @@ class PostDetailViewModel @Inject constructor(
         fun node(dto: CommentDto): CommentResponse {
             // ✅ timestamp가 null이면 updatedDate → createdDate → "" 순으로 대체
             val safeTs = (dto.timestamp?.takeIf { it.isNotBlank() }
-                ?: dto.updatedDate
-                ?: dto.createdDate
+                ?: dto.updatedAt
+                ?: dto.createdAt
                 ?: "")
 
             return CommentResponse(

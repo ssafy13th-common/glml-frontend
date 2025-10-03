@@ -8,6 +8,6 @@ data class PostDetailResponse(
     val author: String,
     val authorProfileUrl: String?,
     val authorEmail: String,
-    val updatedDate: String,
+    val updatedAt: String,
     val comments: List<CommentDto>
 )
