@@ -1,7 +1,7 @@
 package com.ssafy.a705.controller.viewmodel
 
-import com.ssafy.a705.network.sign.KakaoAuthManager
-import com.ssafy.a705.network.sign.KakaoSession
+import com.ssafy.a705.global.network.sign.KakaoAuthManager
+import com.ssafy.a705.global.network.sign.KakaoSession
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

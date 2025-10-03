@@ -8,7 +8,7 @@ import android.location.LocationListener
 import android.location.LocationManager
 import android.os.Bundle
 import android.util.Log
-import com.ssafy.a705.network.sign.SessionManager
+import com.ssafy.a705.global.network.sign.SessionManager
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

@@ -6,8 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ssafy.a705.group.common.util.GeoUtil
 import com.ssafy.a705.group.common.util.GroupStatusUtil
-import com.ssafy.a705.network.GroupApiService
-import com.ssafy.a705.network.GroupUpdateRequest
+import com.ssafy.a705.global.network.GroupApiService
+import com.ssafy.a705.global.network.GroupUpdateRequest
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -15,7 +15,6 @@ import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime
-import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.time.format.DateTimeFormatterBuilder
 import java.util.Locale

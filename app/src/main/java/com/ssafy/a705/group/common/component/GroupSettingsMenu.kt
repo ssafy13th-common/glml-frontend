@@ -12,7 +12,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.ssafy.a705.group.list.GroupDeleteViewModel
 import com.ssafy.a705.group.member.GroupMemberViewModel
-import com.ssafy.a705.navigation.GroupNavRoutes
+import com.ssafy.a705.global.navigation.GroupNavRoutes
 
 @Composable
 fun GroupSettingsMenu(

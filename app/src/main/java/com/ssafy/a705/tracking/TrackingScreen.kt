@@ -1,5 +1,6 @@
 package com.ssafy.a705.tracking
 
+import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -25,6 +26,7 @@ import androidx.compose.material.icons.filled.Info
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import android.provider.Settings
+import androidx.annotation.RequiresPermission
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import androidx.lifecycle.Lifecycle
@@ -51,8 +53,8 @@ import com.kakao.vectormap.route.RouteLineSegment
 import com.kakao.vectormap.route.RouteLineStyle
 import com.kakao.vectormap.route.RouteLineStyles
 import com.ssafy.a705.R
-import com.ssafy.a705.components.HeaderRow
-import com.ssafy.a705.components.KakaoMapView
+import com.ssafy.a705.global.components.HeaderRow
+import com.ssafy.a705.global.components.KakaoMapView
 import com.ssafy.a705.controller.viewmodel.MyPageViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -277,9 +279,9 @@ private fun TrackingAfterPermissionGrantedContent(
                 ) {
                     KakaoMapView(
                         modifier = Modifier.fillMaxSize(),
-                        onMapReady = @androidx.annotation.RequiresPermission(allOf = [
-                            android.Manifest.permission.ACCESS_FINE_LOCATION,
-                            android.Manifest.permission.ACCESS_COARSE_LOCATION
+                        onMapReady = @RequiresPermission(allOf = [
+                            Manifest.permission.ACCESS_FINE_LOCATION,
+                            Manifest.permission.ACCESS_COARSE_LOCATION
                         ]) { kakaoMap ->
                             kakaoMapRef = kakaoMap
 

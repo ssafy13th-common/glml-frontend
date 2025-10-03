@@ -46,12 +46,12 @@ import com.kakao.vectormap.route.RouteLineOptions
 import com.kakao.vectormap.route.RouteLineSegment
 import com.kakao.vectormap.route.RouteLineStyle
 import com.kakao.vectormap.route.RouteLineStyles
-import com.ssafy.a705.components.KakaoMapView
+import com.ssafy.a705.global.components.KakaoMapView
 import coil.request.ImageRequest
 import coil.compose.AsyncImage
 import coil.compose.SubcomposeAsyncImage
 import coil.imageLoader
-import com.ssafy.a705.components.HeaderRow
+import com.ssafy.a705.global.components.HeaderRow
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient

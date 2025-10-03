@@ -1,6 +1,6 @@
 package com.ssafy.a705.group.member
 
-import com.ssafy.a705.network.GroupApiService
+import com.ssafy.a705.global.network.GroupApiService
 import javax.inject.Inject
 import javax.inject.Singleton
 

@@ -1,9 +1,9 @@
 package com.ssafy.a705.controller.service
 
-import com.ssafy.a705.network.ApiClient
-import com.ssafy.a705.network.TokenManager
-import com.ssafy.a705.network.verification.SmsSendReq
-import com.ssafy.a705.network.verification.SmsVerifyReq
+import com.ssafy.a705.global.network.ApiClient
+import com.ssafy.a705.global.network.TokenManager
+import com.ssafy.a705.global.network.verification.SmsSendReq
+import com.ssafy.a705.global.network.verification.SmsVerifyReq
 import javax.inject.Inject
 import javax.inject.Singleton
 

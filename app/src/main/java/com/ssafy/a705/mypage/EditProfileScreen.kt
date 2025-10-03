@@ -32,7 +32,7 @@ import androidx.lifecycle.compose.LocalLifecycleOwner
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.ssafy.a705.R
-import com.ssafy.a705.components.HeaderRow
+import com.ssafy.a705.global.components.HeaderRow
 import com.ssafy.a705.controller.viewmodel.MyPageViewModel
 import com.ssafy.a705.controller.viewmodel.ProfilePhotoViewModel
 import kotlinx.coroutines.launch

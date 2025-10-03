@@ -30,10 +30,10 @@ import com.kakao.vectormap.KakaoMap
 import com.kakao.vectormap.LatLng
 import com.kakao.vectormap.MapView
 import com.kakao.vectormap.camera.CameraUpdateFactory
-import com.ssafy.a705.components.ColorPickerDialog
-import com.ssafy.a705.components.HeaderRow
-import com.ssafy.a705.components.KakaoMapView
-import com.ssafy.a705.navigation.DoubleBackToExitHandler
+import com.ssafy.a705.global.components.ColorPickerDialog
+import com.ssafy.a705.global.components.HeaderRow
+import com.ssafy.a705.global.components.KakaoMapView
+import com.ssafy.a705.global.navigation.DoubleBackToExitHandler
 import com.ssafy.a705.record.geojson.GeoJsonDrawer
 import com.ssafy.a705.record.geojson.GeoJsonLoader
 import com.ssafy.a705.record.geojson.GeoJsonParser

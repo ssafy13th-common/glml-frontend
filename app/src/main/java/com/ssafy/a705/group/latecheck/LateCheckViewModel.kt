@@ -4,11 +4,10 @@ import android.content.Context
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ssafy.a705.network.GroupApiService
-import com.ssafy.a705.network.LiveLocationStatusApi
-import com.ssafy.a705.network.TokenManager
-import com.ssafy.a705.network.sign.SessionManager
-import com.ssafy.a705.group.member.GroupMembersData
+import com.ssafy.a705.global.network.GroupApiService
+import com.ssafy.a705.global.network.LiveLocationStatusApi
+import com.ssafy.a705.global.network.TokenManager
+import com.ssafy.a705.global.network.sign.SessionManager
 import com.ssafy.a705.group.member.GroupMemberRepository
 import com.ssafy.a705.group.common.util.GeoUtil
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -20,7 +19,6 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.delay
-import retrofit2.Response
 import javax.inject.Inject
 
 @HiltViewModel

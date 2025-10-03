@@ -1,6 +1,5 @@
 package com.ssafy.a705.group.photo
 
-import android.net.Uri
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
@@ -21,7 +20,6 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.DisposableEffect
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
-import androidx.lifecycle.LifecycleOwner
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -37,7 +35,7 @@ import coil.compose.rememberAsyncImagePainter
 import com.ssafy.a705.group.common.component.GroupTopBar
 import com.ssafy.a705.group.common.component.GroupStatusChip
 import com.ssafy.a705.group.common.component.GroupStatusChipSize
-import com.ssafy.a705.network.GroupImageDto
+import com.ssafy.a705.global.network.GroupImageDto
 
 @Composable
 fun GroupPhotoScreen(

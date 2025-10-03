@@ -20,7 +20,7 @@ import coil.compose.AsyncImage
 import androidx.compose.ui.layout.ContentScale
 import com.ssafy.a705.R
 import com.ssafy.a705.controller.viewmodel.MyPageViewModel
-import com.ssafy.a705.components.HeaderRow
+import com.ssafy.a705.global.components.HeaderRow
 
 @Composable
 fun MyPageScreen(

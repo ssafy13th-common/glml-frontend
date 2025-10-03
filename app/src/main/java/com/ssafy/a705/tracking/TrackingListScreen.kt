@@ -16,14 +16,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
-import com.ssafy.a705.components.HeaderRow
-import com.ssafy.a705.util.ImageSaver
+import com.ssafy.a705.global.components.HeaderRow
+import com.ssafy.a705.global.util.ImageSaver
 
 @Composable
 fun TrackingListScreen(

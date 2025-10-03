@@ -30,8 +30,8 @@ import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import coil.imageLoader
 import coil.request.ImageRequest
-import com.ssafy.a705.components.HeaderRow
-import com.ssafy.a705.components.MenuAction
+import com.ssafy.a705.global.components.HeaderRow
+import com.ssafy.a705.global.components.MenuAction
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale

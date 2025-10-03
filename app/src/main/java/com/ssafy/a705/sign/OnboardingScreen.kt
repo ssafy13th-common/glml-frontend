@@ -17,7 +17,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.RadioButton
@@ -52,7 +51,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.kakao.sdk.auth.model.OAuthToken
 import com.ssafy.a705.R
 import com.ssafy.a705.controller.viewmodel.OnboardingViewModel
-import com.ssafy.a705.network.sign.SignApi
+import com.ssafy.a705.global.network.sign.SignApi
 import com.ssafy.a705.signup.SignupViewModel
 import kotlinx.coroutines.launch
 

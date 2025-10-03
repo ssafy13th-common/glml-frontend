@@ -8,7 +8,7 @@ import com.ssafy.a705.model.base.ApiException
 import com.ssafy.a705.model.resp.BoardDto
 import com.ssafy.a705.model.resp.MyCommentDto
 import com.ssafy.a705.model.resp.MyProfileResponse
-import com.ssafy.a705.network.sign.KakaoAuthManager
+import com.ssafy.a705.global.network.sign.KakaoAuthManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow

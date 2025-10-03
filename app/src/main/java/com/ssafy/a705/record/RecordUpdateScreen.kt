@@ -2,7 +2,6 @@ package com.ssafy.a705.record
 
 import android.app.DatePickerDialog
 import android.net.Uri
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -36,8 +35,8 @@ import coil.compose.AsyncImage
 import coil.compose.SubcomposeAsyncImage
 import coil.imageLoader
 import coil.request.ImageRequest
-import com.ssafy.a705.components.HeaderRow
-import com.ssafy.a705.components.MenuAction
+import com.ssafy.a705.global.components.HeaderRow
+import com.ssafy.a705.global.components.MenuAction
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale

@@ -25,7 +25,7 @@ import com.kakao.vectormap.label.LabelStyles
 import com.kakao.vectormap.label.LabelTextBuilder
 import com.kakao.vectormap.label.LabelTextStyle
 import com.ssafy.a705.R
-import com.ssafy.a705.components.KakaoMapView
+import com.ssafy.a705.global.components.KakaoMapView
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 

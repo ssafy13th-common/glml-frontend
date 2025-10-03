@@ -33,7 +33,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import com.ssafy.a705.R
-import com.ssafy.a705.components.HeaderRow
+import com.ssafy.a705.global.components.HeaderRow
 import com.ssafy.a705.controller.viewmodel.WithViewModel
 import com.ssafy.a705.model.resp.WithPostDto
 

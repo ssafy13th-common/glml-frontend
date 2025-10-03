@@ -8,7 +8,7 @@ import com.ssafy.a705.model.req.PatchProfileRequest
 import com.ssafy.a705.model.resp.MyBoardsPageResponse
 import com.ssafy.a705.model.resp.MyCommentsPageResponse
 import com.ssafy.a705.model.resp.MyProfileResponse
-import com.ssafy.a705.network.ApiClient
+import com.ssafy.a705.global.network.ApiClient
 import javax.inject.Inject
 
 class MyPageService @Inject constructor(

@@ -1,11 +1,11 @@
 package com.ssafy.a705.group.receipt
 
-import com.ssafy.a705.network.GroupApiService
-import com.ssafy.a705.network.ReceiptData
-import com.ssafy.a705.network.ReceiptRequest
-import com.ssafy.a705.network.SettlementRequest
-import com.ssafy.a705.network.SettlementResponse
-import com.ssafy.a705.network.TokenManager
+import com.ssafy.a705.global.network.GroupApiService
+import com.ssafy.a705.global.network.ReceiptData
+import com.ssafy.a705.global.network.ReceiptRequest
+import com.ssafy.a705.global.network.SettlementRequest
+import com.ssafy.a705.global.network.SettlementResponse
+import com.ssafy.a705.global.network.TokenManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject

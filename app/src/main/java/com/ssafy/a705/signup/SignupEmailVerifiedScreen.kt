@@ -21,7 +21,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.ssafy.a705.navigation.Screen
+import com.ssafy.a705.global.navigation.Screen
 
 @Composable
 fun SignupEmailVerifiedScreen(

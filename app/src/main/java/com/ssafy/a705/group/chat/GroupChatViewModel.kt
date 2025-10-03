@@ -6,15 +6,13 @@ import androidx.lifecycle.viewModelScope
 import com.ssafy.a705.group.common.model.ChatMessage
 import com.ssafy.a705.group.common.model.MessageStatus
 import com.ssafy.a705.group.common.util.GroupStatusUtil
-import com.ssafy.a705.network.GroupApiService
-import com.ssafy.a705.network.TokenManager
-import com.ssafy.a705.network.sign.SessionManager
-import com.ssafy.a705.group.member.GroupMembersData
+import com.ssafy.a705.global.network.GroupApiService
+import com.ssafy.a705.global.network.TokenManager
+import com.ssafy.a705.global.network.sign.SessionManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.delay
-import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel

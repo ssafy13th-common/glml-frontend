@@ -8,9 +8,9 @@ import com.ssafy.a705.group.common.GroupMemberManager
 import com.ssafy.a705.group.common.model.Memo
 import com.ssafy.a705.group.common.util.GroupStatusUtil
 import com.ssafy.a705.group.list.GroupRepository
-import com.ssafy.a705.network.GatheringUpdateRequest
-import com.ssafy.a705.network.GroupApiService
-import com.ssafy.a705.network.sign.SessionManager
+import com.ssafy.a705.global.network.GatheringUpdateRequest
+import com.ssafy.a705.global.network.GroupApiService
+import com.ssafy.a705.global.network.sign.SessionManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -20,7 +20,6 @@ import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 import javax.inject.Inject
-import javax.inject.Named
 
 data class GroupMemoUiState(
     val isLoading: Boolean = false,

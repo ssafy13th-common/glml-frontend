@@ -29,7 +29,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ssafy.a705.controller.viewmodel.PhoneVerifyViewModel
-import com.ssafy.a705.navigation.Screen
+import com.ssafy.a705.global.navigation.Screen
 
 @Composable
 fun PhoneVerifyScreen(

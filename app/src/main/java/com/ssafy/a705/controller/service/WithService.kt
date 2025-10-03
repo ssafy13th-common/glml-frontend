@@ -1,6 +1,5 @@
 package com.ssafy.a705.controller.service
 
-import android.util.Log
 import com.ssafy.a705.model.base.ApiException
 import com.ssafy.a705.model.base.BaseResponse
 import com.ssafy.a705.model.req.CommentRequest
@@ -9,9 +8,8 @@ import com.ssafy.a705.model.req.WithPostWriteRequest
 import com.ssafy.a705.model.resp.CommentResponse
 import com.ssafy.a705.model.resp.CursorData
 import com.ssafy.a705.model.resp.WithPostDetailData
-import com.ssafy.a705.model.resp.WithPostDto
 import com.ssafy.a705.model.resp.WithPostWriteResponse
-import com.ssafy.a705.network.ApiClient
+import com.ssafy.a705.global.network.ApiClient
 import javax.inject.Inject
 
 class WithService @Inject constructor(

@@ -28,7 +28,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
-import com.ssafy.a705.navigation.Screen
+import com.ssafy.a705.global.navigation.Screen
 import com.ssafy.a705.model.resp.CommentResponse
 import com.ssafy.a705.with.model.WithPost
 import kotlinx.coroutines.launch
@@ -40,7 +40,7 @@ import androidx.compose.ui.res.painterResource
 import kotlinx.coroutines.delay
 import com.ssafy.a705.R
 import com.ssafy.a705.controller.viewmodel.AppChatBridgeViewModel
-import kotlinx.coroutines.launch
+
 private const val S3_BASE = "https://glmlbucket.s3.ap-northeast-2.amazonaws.com/"
 @Composable
 fun WithPostDetailScreen(

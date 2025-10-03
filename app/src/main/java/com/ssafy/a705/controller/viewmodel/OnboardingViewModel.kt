@@ -3,8 +3,8 @@ package com.ssafy.a705.controller.viewmodel
 import android.app.Activity
 import androidx.lifecycle.ViewModel
 import com.kakao.sdk.auth.model.OAuthToken
-import com.ssafy.a705.network.sign.KakaoAuthManager
-import com.ssafy.a705.network.sign.SignApi
+import com.ssafy.a705.global.network.sign.KakaoAuthManager
+import com.ssafy.a705.global.network.sign.SignApi
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

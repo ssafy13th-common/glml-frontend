@@ -3,7 +3,7 @@ package com.ssafy.a705.group.photo
 import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ssafy.a705.network.GroupImageDto
+import com.ssafy.a705.global.network.GroupImageDto
 import com.ssafy.a705.group.list.GroupRepository
 import com.ssafy.a705.group.common.util.GroupStatusUtil
 import dagger.hilt.android.lifecycle.HiltViewModel

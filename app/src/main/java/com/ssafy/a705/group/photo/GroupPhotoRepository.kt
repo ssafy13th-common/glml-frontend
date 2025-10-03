@@ -2,9 +2,10 @@ package com.ssafy.a705.group.photo
 
 import android.content.Context
 import android.net.Uri
-import com.ssafy.a705.imageS3.ImageRepository
-import com.ssafy.a705.network.GroupApiService
-import com.ssafy.a705.network.GroupImageDto
+import com.ssafy.a705.global.imageS3.ImageRepository
+import com.ssafy.a705.global.network.GroupApiService
+import com.ssafy.a705.global.network.GroupImageDto
+import com.ssafy.a705.global.network.GroupImagesPostRequest
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File
@@ -13,7 +14,6 @@ import java.io.InputStream
 import javax.inject.Inject
 import javax.inject.Singleton
 import dagger.hilt.android.qualifiers.ApplicationContext
-import javax.inject.Named
 
 @Singleton
 class GroupPhotoRepository @Inject constructor(
@@ -84,7 +84,7 @@ class GroupPhotoRepository @Inject constructor(
 
                 // 4. 업로드 성공한 이미지 URL들을 백엔드에 전달
                 if (uploadedImageUrls.isNotEmpty()) {
-                    val postRequest = com.ssafy.a705.network.GroupImagesPostRequest(uploadedImageUrls)
+                    val postRequest = GroupImagesPostRequest(uploadedImageUrls)
                     groupApiService.addGroupImages(groupId, postRequest)
                     onProgress?.invoke(100) // 완료
                     true

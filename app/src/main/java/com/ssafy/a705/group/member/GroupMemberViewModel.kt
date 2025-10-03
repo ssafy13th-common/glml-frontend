@@ -3,20 +3,18 @@ package com.ssafy.a705.group.member
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ssafy.a705.network.GroupApiService
+import com.ssafy.a705.global.network.GroupApiService
 import com.ssafy.a705.group.common.GroupMemberManager
 import com.ssafy.a705.group.common.util.GroupStatusUtil
-import com.ssafy.a705.network.sign.SessionManager
+import com.ssafy.a705.global.network.sign.SessionManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
-import javax.inject.Named
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.mapLatest
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 @OptIn(FlowPreview::class)

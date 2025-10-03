@@ -21,7 +21,7 @@ import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import coil.request.ImageRequest
 import coil.imageLoader
-import com.ssafy.a705.components.HeaderRow
+import com.ssafy.a705.global.components.HeaderRow
 import kotlin.math.min
 
 @Composable

@@ -1,6 +1,5 @@
 package com.ssafy.a705.record
 
-import android.annotation.SuppressLint
 import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.Image
@@ -27,8 +26,8 @@ import coil.compose.SubcomposeAsyncImage
 import coil.imageLoader
 import coil.request.ImageRequest
 import com.ssafy.a705.R     // 자동으로 확인하지 못해 수동 추가함
-import com.ssafy.a705.components.HeaderRow
-import com.ssafy.a705.components.MenuAction
+import com.ssafy.a705.global.components.HeaderRow
+import com.ssafy.a705.global.components.MenuAction
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

@@ -14,7 +14,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import com.ssafy.a705.MainActivity
 import com.ssafy.a705.R
-import com.ssafy.a705.network.sign.SessionManager
+import com.ssafy.a705.global.network.sign.SessionManager
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

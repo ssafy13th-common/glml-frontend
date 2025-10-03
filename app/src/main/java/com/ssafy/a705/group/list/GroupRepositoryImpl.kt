@@ -3,10 +3,10 @@ package com.ssafy.a705.group.list
 import com.ssafy.a705.group.common.model.Group
 import javax.inject.Inject
 import javax.inject.Singleton
-import com.ssafy.a705.network.GroupApiService
-import com.ssafy.a705.network.GroupDetailResponse
-import com.ssafy.a705.network.GatheringDetailResponse
-import com.ssafy.a705.network.GatheringUpdateRequest
+import com.ssafy.a705.global.network.GroupApiService
+import com.ssafy.a705.global.network.GroupDetailResponse
+import com.ssafy.a705.global.network.GatheringDetailResponse
+import com.ssafy.a705.global.network.GatheringUpdateRequest
 
 @Singleton
 class GroupRepositoryImpl @Inject constructor(

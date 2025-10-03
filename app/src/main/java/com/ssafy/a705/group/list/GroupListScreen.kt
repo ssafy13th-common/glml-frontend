@@ -32,12 +32,12 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
-import com.ssafy.a705.components.HeaderRow
+import com.ssafy.a705.global.components.HeaderRow
 import com.ssafy.a705.group.common.component.CustomFlagTab
 import com.ssafy.a705.group.common.component.EmptyGroupCard
 import com.ssafy.a705.group.common.component.GroupCard
 import com.ssafy.a705.group.common.model.Group
-import com.ssafy.a705.navigation.GroupNavRoutes
+import com.ssafy.a705.global.navigation.GroupNavRoutes
 
 @Composable
 fun GroupListScreen(
