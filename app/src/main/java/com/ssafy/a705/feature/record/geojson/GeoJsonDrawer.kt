@@ -14,7 +14,7 @@ import com.kakao.vectormap.shape.Polygon
 import com.kakao.vectormap.shape.PolygonOptions
 import com.kakao.vectormap.shape.PolygonStyles
 import com.kakao.vectormap.shape.PolygonStylesSet
-import com.ssafy.a705.record.geojson.GeoJsonParser.Feature
+import com.ssafy.a705.feature.record.geojson.GeoJsonParser.Feature
 
 object GeoJsonDrawer {
 

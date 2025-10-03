@@ -34,9 +34,9 @@ import com.ssafy.a705.common.components.ColorPickerDialog
 import com.ssafy.a705.common.components.HeaderRow
 import com.ssafy.a705.common.components.KakaoMapView
 import com.ssafy.a705.common.navigation.DoubleBackToExitHandler
-import com.ssafy.a705.record.geojson.GeoJsonDrawer
-import com.ssafy.a705.record.geojson.GeoJsonLoader
-import com.ssafy.a705.record.geojson.GeoJsonParser
+import com.ssafy.a705.feature.record.geojson.GeoJsonDrawer
+import com.ssafy.a705.feature.record.geojson.GeoJsonLoader
+import com.ssafy.a705.feature.record.geojson.GeoJsonParser
 
 @Composable
 fun MapScreen(
