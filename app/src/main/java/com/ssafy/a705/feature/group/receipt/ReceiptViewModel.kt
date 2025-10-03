@@ -4,7 +4,7 @@ import android.content.Context
 import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ssafy.a705.group.member.GroupMemberRepository
+import com.ssafy.a705.feature.group.member.GroupMemberRepository
 import com.ssafy.a705.common.imageS3.ImageRepository
 import com.ssafy.a705.common.network.ReceiptItem
 import dagger.hilt.android.lifecycle.HiltViewModel

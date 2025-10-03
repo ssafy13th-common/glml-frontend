@@ -3,9 +3,9 @@ package com.ssafy.a705.feature.group.chat
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ssafy.a705.group.common.model.ChatMessage
-import com.ssafy.a705.group.common.model.MessageStatus
-import com.ssafy.a705.group.common.util.GroupStatusUtil
+import com.ssafy.a705.feature.group.common.model.ChatMessage
+import com.ssafy.a705.feature.group.common.model.MessageStatus
+import com.ssafy.a705.feature.group.common.util.GroupStatusUtil
 import com.ssafy.a705.common.network.GroupApiService
 import com.ssafy.a705.common.network.TokenManager
 import com.ssafy.a705.common.network.sign.SessionManager

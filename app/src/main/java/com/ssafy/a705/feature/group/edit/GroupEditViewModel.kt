@@ -4,8 +4,8 @@ import android.content.Context
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ssafy.a705.group.common.util.GeoUtil
-import com.ssafy.a705.group.common.util.GroupStatusUtil
+import com.ssafy.a705.feature.group.common.util.GeoUtil
+import com.ssafy.a705.feature.group.common.util.GroupStatusUtil
 import com.ssafy.a705.common.network.GroupApiService
 import com.ssafy.a705.common.network.GroupUpdateRequest
 import dagger.hilt.android.lifecycle.HiltViewModel

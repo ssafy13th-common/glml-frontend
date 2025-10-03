@@ -32,8 +32,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.ssafy.a705.group.common.component.GroupTopBar
-import com.ssafy.a705.group.common.component.TimePickerDialog
+import com.ssafy.a705.feature.group.common.component.GroupTopBar
+import com.ssafy.a705.feature.group.common.component.TimePickerDialog
 
 @Composable
 fun GroupCreateScreen(

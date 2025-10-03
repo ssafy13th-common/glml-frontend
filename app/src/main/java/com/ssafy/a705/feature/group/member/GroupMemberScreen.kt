@@ -39,8 +39,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
-import com.ssafy.a705.group.common.component.AddMemberDialog
-import com.ssafy.a705.group.common.component.GroupTopBar
+import com.ssafy.a705.feature.group.common.component.AddMemberDialog
+import com.ssafy.a705.feature.group.common.component.GroupTopBar
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.background
 

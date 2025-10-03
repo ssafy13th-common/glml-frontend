@@ -3,7 +3,7 @@ package com.ssafy.a705.feature.group.create
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ssafy.a705.group.common.util.GeoUtil
+import com.ssafy.a705.feature.group.common.util.GeoUtil
 import com.ssafy.a705.common.network.GroupApiService
 import com.ssafy.a705.common.network.GroupCreateRequest
 import com.ssafy.a705.common.network.GroupUpdateRequest

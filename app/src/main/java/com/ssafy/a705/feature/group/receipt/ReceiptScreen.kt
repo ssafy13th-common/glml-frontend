@@ -33,7 +33,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.ssafy.a705.common.network.ReceiptItem
-import com.ssafy.a705.group.common.component.GroupTopBar
+import com.ssafy.a705.feature.group.common.component.GroupTopBar
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

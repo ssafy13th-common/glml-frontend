@@ -4,8 +4,8 @@ import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ssafy.a705.common.network.GroupImageDto
-import com.ssafy.a705.group.list.GroupRepository
-import com.ssafy.a705.group.common.util.GroupStatusUtil
+import com.ssafy.a705.feature.group.list.GroupRepository
+import com.ssafy.a705.feature.group.common.util.GroupStatusUtil
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

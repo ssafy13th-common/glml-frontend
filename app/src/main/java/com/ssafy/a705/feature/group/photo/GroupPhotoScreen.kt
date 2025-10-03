@@ -32,9 +32,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
-import com.ssafy.a705.group.common.component.GroupTopBar
-import com.ssafy.a705.group.common.component.GroupStatusChip
-import com.ssafy.a705.group.common.component.GroupStatusChipSize
+import com.ssafy.a705.feature.group.common.component.GroupTopBar
+import com.ssafy.a705.feature.group.common.component.GroupStatusChip
+import com.ssafy.a705.feature.group.common.component.GroupStatusChipSize
 import com.ssafy.a705.common.network.GroupImageDto
 
 @Composable

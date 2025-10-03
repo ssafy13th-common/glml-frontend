@@ -9,7 +9,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.text.font.FontWeight
-import com.ssafy.a705.group.common.model.Group
+import com.ssafy.a705.feature.group.common.model.Group
 
 
 @Composable

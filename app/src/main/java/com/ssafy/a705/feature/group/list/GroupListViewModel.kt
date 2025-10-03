@@ -2,8 +2,8 @@ package com.ssafy.a705.feature.group.list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ssafy.a705.group.common.model.Group
-import com.ssafy.a705.group.common.util.GroupStatusUtil
+import com.ssafy.a705.feature.group.common.model.Group
+import com.ssafy.a705.feature.group.common.util.GroupStatusUtil
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow

@@ -9,8 +9,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.ssafy.a705.group.member.GroupMemberViewModel
-import com.ssafy.a705.group.member.MemberItem
+import com.ssafy.a705.feature.group.member.GroupMemberViewModel
+import com.ssafy.a705.feature.group.member.MemberItem
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 @Composable

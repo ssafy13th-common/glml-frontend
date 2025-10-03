@@ -32,10 +32,10 @@ import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import com.ssafy.a705.common.components.HeaderRow
-import com.ssafy.a705.group.common.component.CustomFlagTab
-import com.ssafy.a705.group.common.component.EmptyGroupCard
-import com.ssafy.a705.group.common.component.GroupCard
-import com.ssafy.a705.group.common.model.Group
+import com.ssafy.a705.feature.group.common.component.CustomFlagTab
+import com.ssafy.a705.feature.group.common.component.EmptyGroupCard
+import com.ssafy.a705.feature.group.common.component.GroupCard
+import com.ssafy.a705.feature.group.common.model.Group
 import com.ssafy.a705.common.navigation.GroupNavRoutes
 
 @Composable

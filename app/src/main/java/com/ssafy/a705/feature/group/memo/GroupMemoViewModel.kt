@@ -5,10 +5,10 @@ package com.ssafy.a705.feature.group.memo
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ssafy.a705.feature.controller.service.MyPageService
-import com.ssafy.a705.group.common.GroupMemberManager
-import com.ssafy.a705.group.common.model.Memo
-import com.ssafy.a705.group.common.util.GroupStatusUtil
-import com.ssafy.a705.group.list.GroupRepository
+import com.ssafy.a705.feature.group.common.GroupMemberManager
+import com.ssafy.a705.feature.group.common.model.Memo
+import com.ssafy.a705.feature.group.common.util.GroupStatusUtil
+import com.ssafy.a705.feature.group.list.GroupRepository
 import com.ssafy.a705.common.network.GatheringUpdateRequest
 import com.ssafy.a705.common.network.GroupApiService
 import com.ssafy.a705.common.network.sign.SessionManager

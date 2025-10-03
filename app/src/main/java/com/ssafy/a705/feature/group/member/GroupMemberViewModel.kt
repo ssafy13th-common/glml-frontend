@@ -4,8 +4,8 @@ package com.ssafy.a705.feature.group.member
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ssafy.a705.common.network.GroupApiService
-import com.ssafy.a705.group.common.GroupMemberManager
-import com.ssafy.a705.group.common.util.GroupStatusUtil
+import com.ssafy.a705.feature.group.common.GroupMemberManager
+import com.ssafy.a705.feature.group.common.util.GroupStatusUtil
 import com.ssafy.a705.common.network.sign.SessionManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

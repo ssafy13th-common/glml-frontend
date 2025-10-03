@@ -1,6 +1,6 @@
 package com.ssafy.a705.feature.group.list
 
-import com.ssafy.a705.group.common.model.Group
+import com.ssafy.a705.feature.group.common.model.Group
 import javax.inject.Inject
 import javax.inject.Singleton
 import com.ssafy.a705.common.network.GroupApiService

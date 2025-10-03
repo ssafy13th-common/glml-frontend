@@ -8,8 +8,8 @@ import com.ssafy.a705.common.network.GroupApiService
 import com.ssafy.a705.common.network.LiveLocationStatusApi
 import com.ssafy.a705.common.network.TokenManager
 import com.ssafy.a705.common.network.sign.SessionManager
-import com.ssafy.a705.group.member.GroupMemberRepository
-import com.ssafy.a705.group.common.util.GeoUtil
+import com.ssafy.a705.feature.group.member.GroupMemberRepository
+import com.ssafy.a705.feature.group.common.util.GeoUtil
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
