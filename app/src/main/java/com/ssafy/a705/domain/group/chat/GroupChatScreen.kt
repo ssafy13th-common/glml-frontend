@@ -40,11 +40,11 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
-import com.ssafy.a705.group.common.component.GroupStatusChip
-import com.ssafy.a705.group.common.component.GroupStatusChipSize
-import com.ssafy.a705.group.common.component.GroupTopBar
-import com.ssafy.a705.group.common.model.ChatMessage
-import com.ssafy.a705.group.common.model.MessageStatus
+import com.ssafy.a705.domain.group.common.component.GroupStatusChip
+import com.ssafy.a705.domain.group.common.component.GroupStatusChipSize
+import com.ssafy.a705.domain.group.common.component.GroupTopBar
+import com.ssafy.a705.domain.group.common.model.ChatMessage
+import com.ssafy.a705.domain.group.common.model.MessageStatus
 import com.ssafy.a705.domain.with.CommentInputBar
 import java.time.Instant
 import java.time.LocalDate

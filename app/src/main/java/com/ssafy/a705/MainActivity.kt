@@ -9,7 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import com.ssafy.a705.ui.theme.A705Theme
+import com.ssafy.a705.global.theme.A705Theme
 import com.ssafy.a705.global.navigation.AppNavigator
 import com.ssafy.a705.global.network.TokenManager
 import dagger.hilt.android.AndroidEntryPoint

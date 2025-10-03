@@ -1,4 +1,4 @@
-package com.ssafy.a705.ui.theme
+package com.ssafy.a705.global.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
