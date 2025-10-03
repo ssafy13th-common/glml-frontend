@@ -9,8 +9,8 @@ import com.ssafy.a705.common.network.mypage.MypageApi
 import com.ssafy.a705.common.network.sign.SignApi
 import com.ssafy.a705.common.network.with.WithApi
 import com.ssafy.a705.feature.signup.SignupApi
-import com.ssafy.a705.record.MapApi
-import com.ssafy.a705.record.RecordApi
+import com.ssafy.a705.feature.record.MapApi
+import com.ssafy.a705.feature.record.RecordApi
 import com.ssafy.a705.feature.tracking.TrackingApi
 import com.ssafy.a705.feature.group.latecheck.LateFeeStorage
 import com.ssafy.a705.feature.group.latecheck.LiveLocationWebSocketClient
