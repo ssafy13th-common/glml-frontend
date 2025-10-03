@@ -1,3 +1,6 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -21,20 +24,26 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        val localProperties = Properties().apply {
+            val localPropsFile = rootProject.file("local.properties")
+            if (localPropsFile.exists()) {
+                load(FileInputStream(localPropsFile))
+            }
+        }
 
-        val kakaoRestApiKey: String =
-            project.findProperty("KAKAO_REST_API_KEY") as? String ?: ""
-        buildConfigField("String", "KAKAO_REST_API_KEY", "\"$kakaoRestApiKey\"")
+        val kakaoNativeAppKey = localProperties.getProperty("KAKAO_NATIVE_APP_KEY") ?: ""
+        val kakaoRestApiKey = localProperties.getProperty("KAKAO_REST_API_KEY") ?: ""
 
-        val kakaoNativeAppKey: String =
-            project.findProperty("KAKAO_NATIVE_APP_KEY") as? String ?: ""
-        buildConfigField("String", "KAKAO_NATIVE_APP_KEY", "\"$kakaoNativeAppKey\"")
+        defaultConfig {
+            buildConfigField("String", "KAKAO_NATIVE_APP_KEY", "\"$kakaoNativeAppKey\"")
+            buildConfigField("String", "KAKAO_REST_API_KEY", "\"$kakaoRestApiKey\"")
+        }
 
         ndk {
             abiFilters.add("arm64-v8a")
             abiFilters.add("armeabi-v7a")
 //            abiFilters.add("x86")
-//            abiFilters.add("x86_64")
+            abiFilters.add("x86_64")
         }
     }
 

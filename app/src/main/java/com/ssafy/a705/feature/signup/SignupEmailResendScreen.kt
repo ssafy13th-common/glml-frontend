@@ -111,12 +111,12 @@ private fun openSupportedLinksSettings(context: Context) {
     val intent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
         // Android 12+ (API 31 이상)
         Intent(Settings.ACTION_APP_OPEN_BY_DEFAULT_SETTINGS).apply {
-            Intent.setData = "package:$pkg".toUri()
+            data = "package:$pkg".toUri()
         }
     } else {
         // 하위 버전은 앱 정보 화면으로 대체
         Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
-            Intent.setData = "package:$pkg".toUri()
+            data = "package:$pkg".toUri()
         }
     }
 
@@ -124,11 +124,12 @@ private fun openSupportedLinksSettings(context: Context) {
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         context.startActivity(intent)
     } catch (e: ActivityNotFoundException) {
-        // 혹시 둘 다 실패하면 그냥 앱 정보 화면
+        // fallback
         val fallback = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
-            Intent.setData = "package:$pkg".toUri()
+            data = "package:$pkg".toUri()
             addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         }
         context.startActivity(fallback)
     }
+
 }
