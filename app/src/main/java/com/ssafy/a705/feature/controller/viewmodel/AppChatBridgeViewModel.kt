@@ -8,7 +8,7 @@ import com.ssafy.a705.feature.chatSet.dto.ChatMemberInfoDTO
 import com.ssafy.a705.feature.chatSet.dto.ChatRoomRes
 import com.ssafy.a705.feature.chatSet.dto.CreateRoomReq
 import com.ssafy.a705.feature.chatSet.repo.ChatRepository
-import com.ssafy.a705.feature.with.model.ChatMessage
+import com.ssafy.a705.feature.chatSet.dto.ChatMessage
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay

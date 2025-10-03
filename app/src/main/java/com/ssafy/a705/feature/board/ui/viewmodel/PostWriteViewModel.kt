@@ -1,10 +1,10 @@
-package com.ssafy.a705.feature.controller.viewmodel
+package com.ssafy.a705.feature.board.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ssafy.a705.feature.controller.service.WithService
 import com.ssafy.a705.common.network.base.ApiException
-import com.ssafy.a705.feature.model.req.WithPostWriteRequest
+import com.ssafy.a705.feature.board.data.model.request.WritePostRequest
+import com.ssafy.a705.feature.board.data.repository.BoardRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -12,8 +12,8 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class WithPostWriteViewModel @Inject constructor(
-    private val service: WithService
+class PostWriteViewModel @Inject constructor(
+    private val boardRepository: BoardRepository
 ) : ViewModel() {
 
     private val _errorMessage = MutableStateFlow<String?>(null)
@@ -42,11 +42,11 @@ class WithPostWriteViewModel @Inject constructor(
             _errorMessage.value = null
 
             try {
-                val request = WithPostWriteRequest(
+                val request = WritePostRequest(
                     title = _title.value,
                     content = _content.value
                 )
-                val response = service.writePost(request)
+                val response = boardRepository.writePost(request)
                 _writeSuccess.value = response.id
                 onSuccess(response.id)
             } catch (e: ApiException) {
@@ -63,7 +63,7 @@ class WithPostWriteViewModel @Inject constructor(
     fun loadPost(postId: Long) {
         viewModelScope.launch {
             try {
-                val data = service.getPostDetail(postId.toLong())   // ✅ 바로 데이터
+                val data = boardRepository.getPostDetail(postId.toLong())   // ✅ 바로 데이터
                 _title.value = data.title
                 _content.value = data.content
             } catch (e: Exception) {
@@ -75,8 +75,8 @@ class WithPostWriteViewModel @Inject constructor(
     fun updatePost(postId: Long, onSuccess: () -> Unit) {
         viewModelScope.launch {
             try {
-                service.updateBoard(
-                    boardId = postId,
+                boardRepository.updatePost(
+                    postId = postId,
                     title = title.value,
                     content = content.value
                 )

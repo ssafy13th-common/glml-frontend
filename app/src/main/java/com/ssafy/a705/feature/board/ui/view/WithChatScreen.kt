@@ -1,4 +1,4 @@
-package com.ssafy.a705.feature.with
+package com.ssafy.a705.feature.board.ui.view
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ssafy.a705.feature.controller.viewmodel.AppChatBridgeViewModel
 import com.ssafy.a705.feature.controller.viewmodel.MyPageViewModel
-import com.ssafy.a705.feature.with.model.ChatMessage
+import com.ssafy.a705.feature.chatSet.dto.ChatMessage
 import kotlinx.coroutines.flow.distinctUntilChanged
 import java.text.SimpleDateFormat
 import java.util.*

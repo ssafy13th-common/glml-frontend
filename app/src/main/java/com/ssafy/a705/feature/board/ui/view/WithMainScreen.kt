@@ -1,4 +1,4 @@
-package com.ssafy.a705.feature.with
+package com.ssafy.a705.feature.board.ui.view
 
 import android.widget.Toast
 import androidx.compose.foundation.Image
@@ -35,8 +35,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import com.ssafy.a705.R
 import com.ssafy.a705.common.components.HeaderRow
-import com.ssafy.a705.feature.controller.viewmodel.WithViewModel
-import com.ssafy.a705.feature.model.resp.WithPostDto
+import com.ssafy.a705.feature.board.data.model.response.PostData
+import com.ssafy.a705.feature.board.ui.viewmodel.BoardViewModel
 
 
 @Composable
@@ -44,7 +44,7 @@ fun WithMainScreen(
     onNavigateToDetail: (Long) -> Unit,
     onBack: () -> Unit,
     onNavigateToWrite: () -> Unit,
-    viewModel: WithViewModel = hiltViewModel()
+    viewModel: BoardViewModel = hiltViewModel()
 ) {
     val lifecycleOwner = LocalLifecycleOwner.current
 
@@ -197,7 +197,7 @@ private fun SimpleSearchBar(
 }
 
 @Composable
-fun WithPostCard(post: WithPostDto, onClick: () -> Unit) {
+fun WithPostCard(post: PostData, onClick: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -208,7 +208,7 @@ fun WithPostCard(post: WithPostDto, onClick: () -> Unit) {
     ) {
         Text(post.title, fontWeight = FontWeight.Bold, fontSize = 16.sp)
         Spacer(Modifier.height(8.dp))
-        Text(post.summary ?: "", fontSize = 14.sp, color = Color.Gray)
+        Text(post.summary, fontSize = 14.sp, color = Color.Gray)
         Spacer(Modifier.height(8.dp))
         Row(verticalAlignment = Alignment.CenterVertically) {
             Image(
@@ -223,7 +223,7 @@ fun WithPostCard(post: WithPostDto, onClick: () -> Unit) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(post.author, modifier = Modifier.padding(start = 4.dp), fontSize = 12.sp)
                 Spacer(modifier = Modifier.width(20.dp))
-                Text(post.createdDate, fontSize = 11.sp)
+                Text(post.updatedAt, fontSize = 11.sp)
             }
         }
     }

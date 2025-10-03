@@ -5,10 +5,10 @@ import androidx.lifecycle.viewModelScope
 import com.ssafy.a705.feature.controller.service.MyPageService
 import com.ssafy.a705.feature.controller.service.WithService
 import com.ssafy.a705.common.network.base.ApiException
-import com.ssafy.a705.feature.model.resp.BoardDto
-import com.ssafy.a705.feature.model.resp.MyCommentDto
 import com.ssafy.a705.feature.model.resp.MyProfileResponse
 import com.ssafy.a705.common.network.sign.KakaoAuthManager
+import com.ssafy.a705.feature.board.data.model.MyCommentDto
+import com.ssafy.a705.feature.board.data.model.response.PostData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -38,8 +38,8 @@ class MyPageViewModel @Inject constructor(
 
     /* -------------------- 내 포스팅 -------------------- */
 
-    private val _myBoards = MutableStateFlow<List<BoardDto>>(emptyList())
-    val myBoards: StateFlow<List<BoardDto>> = _myBoards
+    private val _myBoards = MutableStateFlow<List<PostData>>(emptyList())
+    val myBoards: StateFlow<List<PostData>> = _myBoards
 
     private val _postPage = MutableStateFlow(0)
     val postPage: StateFlow<Int> = _postPage
@@ -55,7 +55,7 @@ class MyPageViewModel @Inject constructor(
             try {
                 val r = myPageService.getMyBoards(page = page, size = size)
                 // 혹시 중복이 내려올 수도 있어 안전하게 distinct
-                _myBoards.value = r.boards.distinctBy { it.boardId }
+                _myBoards.value = r.boards.boards.distinctBy { it.id }
                 _postPage.value = r.pageNumber
                 _postTotalPages.value = r.totalPages
             } catch (e: ApiException) {
@@ -177,7 +177,7 @@ class MyPageViewModel @Inject constructor(
     }
 
     suspend fun checkBoardExists(boardId: Long): Boolean {
-        return runCatching {
+        return runCatching<Unit> {
             withService.getPostDetail(boardId)      //  존재하면 성공
         }.isSuccess
     }

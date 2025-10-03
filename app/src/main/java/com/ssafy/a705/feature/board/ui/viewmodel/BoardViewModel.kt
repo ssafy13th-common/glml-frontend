@@ -1,28 +1,28 @@
-package com.ssafy.a705.feature.controller.viewmodel
+package com.ssafy.a705.feature.board.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ssafy.a705.feature.controller.service.WithService
 import com.ssafy.a705.common.network.base.ApiException
-import com.ssafy.a705.feature.model.resp.WithPostDto
+import com.ssafy.a705.feature.board.data.model.response.PostData
+import com.ssafy.a705.feature.board.data.repository.BoardRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import kotlinx.coroutines.flow.update
 
 @HiltViewModel
-class WithViewModel @Inject constructor(
-    private val withService: WithService
+class BoardViewModel @Inject constructor(
+    private val boardRepository: BoardRepository
 ) : ViewModel() {
 
     // 1) 에러 메시지 StateFlow 추가
     private val _errorMessage = MutableStateFlow<String?>(null)
     val errorMessage: StateFlow<String?> = _errorMessage
 
-    private val _postList = MutableStateFlow<List<WithPostDto>>(emptyList())
-    val postList: StateFlow<List<WithPostDto>> = _postList
+    private val _postList = MutableStateFlow<List<PostData>>(emptyList())
+    val postList: StateFlow<List<PostData>> = _postList
 
     private var nextCursor: Long? = null
     private var isLoading = false
@@ -34,7 +34,7 @@ class WithViewModel @Inject constructor(
 
         viewModelScope.launch {
             try {
-                val data = withService.getWithPosts(nextCursor)
+                val data = boardRepository.getWithPosts(nextCursor)
                 _postList.update { it + data.boards }
 
                 nextCursor = data.nextCursor
@@ -65,7 +65,7 @@ class WithViewModel @Inject constructor(
             }
 
             try {
-                val data = withService.getWithPosts(null)
+                val data = boardRepository.getWithPosts(null)
                 // 비우지 않고 덮어쓰기
                 _postList.value = data.boards
                 nextCursor = data.nextCursor

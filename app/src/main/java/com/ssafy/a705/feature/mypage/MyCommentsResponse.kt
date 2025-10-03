@@ -1,4 +1,6 @@
-package com.ssafy.a705.feature.model.resp
+package com.ssafy.a705.feature.mypage
+
+import com.ssafy.a705.feature.board.data.model.MyCommentDto
 
 
 data class MyCommentsPageResponse(
@@ -9,9 +11,3 @@ data class MyCommentsPageResponse(
     val totalPages: Int
 )
 
-data class MyCommentDto(
-    val boardTitle: String,
-    val boardId: Long,
-    val commentId: Long,
-    val content: String
-)

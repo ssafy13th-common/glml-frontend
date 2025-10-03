@@ -3,8 +3,8 @@ package com.ssafy.a705.common.network.mypage
 import com.ssafy.a705.common.network.base.BaseResponse
 import com.ssafy.a705.feature.model.req.PatchNicknameRequest
 import com.ssafy.a705.feature.model.req.PatchProfileRequest
-import com.ssafy.a705.feature.model.resp.MyBoardsPageResponse
-import com.ssafy.a705.feature.model.resp.MyCommentsPageResponse
+import com.ssafy.a705.feature.mypage.MyBoardsPageResponse
+import com.ssafy.a705.feature.mypage.MyCommentsPageResponse
 import com.ssafy.a705.feature.model.resp.MyProfileResponse
 import retrofit2.http.Body
 import retrofit2.http.DELETE

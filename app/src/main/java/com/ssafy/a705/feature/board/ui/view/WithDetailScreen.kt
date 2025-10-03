@@ -1,4 +1,4 @@
-package com.ssafy.a705.feature.with
+package com.ssafy.a705.feature.board.ui.view
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -29,10 +29,10 @@ import androidx.navigation.NavController
 import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
 import com.ssafy.a705.common.navigation.Screen
-import com.ssafy.a705.feature.model.resp.CommentResponse
-import com.ssafy.a705.feature.with.model.WithPost
+import com.ssafy.a705.feature.board.data.model.response.CommentResponse
+import com.ssafy.a705.feature.board.data.model.WithPost
 import kotlinx.coroutines.launch
-import com.ssafy.a705.feature.controller.viewmodel.WithPostDetailViewModel
+import com.ssafy.a705.feature.board.ui.viewmodel.PostDetailViewModel
 import com.ssafy.a705.feature.controller.viewmodel.MyPageViewModel
 import android.widget.Toast
 import androidx.compose.foundation.Image
@@ -46,7 +46,7 @@ private const val S3_BASE = "https://glmlbucket.s3.ap-northeast-2.amazonaws.com/
 fun WithPostDetailScreen(
     postId: Long,
     navController: NavController,
-    withPostDetailViewModel: WithPostDetailViewModel = hiltViewModel(),
+    withPostDetailViewModel: PostDetailViewModel = hiltViewModel(),
     myPageViewModel: MyPageViewModel = hiltViewModel(),
     chatViewModel: AppChatBridgeViewModel  = hiltViewModel()
 ) {

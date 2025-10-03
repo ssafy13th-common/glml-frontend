@@ -1,4 +1,4 @@
-package com.ssafy.a705.feature.with
+package com.ssafy.a705.feature.board.ui.view
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.ssafy.a705.feature.controller.viewmodel.WithPostWriteViewModel
+import com.ssafy.a705.feature.board.ui.viewmodel.PostWriteViewModel
 import com.ssafy.a705.common.navigation.Screen
 import android.widget.Toast
 import androidx.compose.ui.platform.LocalContext
@@ -31,7 +31,7 @@ import kotlinx.coroutines.launch
 fun WithPostWriteScreen(
     postId: Long? = null,
     navController: NavController = rememberNavController(),
-    viewModel: WithPostWriteViewModel = hiltViewModel()
+    viewModel: PostWriteViewModel = hiltViewModel()
 ) {
     val title         by viewModel.title.collectAsState()
     val content       by viewModel.content.collectAsState()

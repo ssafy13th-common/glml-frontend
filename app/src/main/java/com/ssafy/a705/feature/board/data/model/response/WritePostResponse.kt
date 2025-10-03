@@ -1,6 +1,6 @@
-package com.ssafy.a705.feature.model.resp
+package com.ssafy.a705.feature.board.data.model.response
 
-data class WithPostWriteResponse(
+data class WritePostResponse(
     val id: Long,
     val title: String,
     val content: String,
