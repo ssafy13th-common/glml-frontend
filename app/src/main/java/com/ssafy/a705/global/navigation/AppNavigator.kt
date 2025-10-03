@@ -12,12 +12,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.ssafy.a705.global.components.NavBar.BottomTab
-import com.ssafy.a705.global.components.NavBar.CustomBottomNavigationBar
-import com.ssafy.a705.global.components.NavBar.GroupBottomNavigationBar
-import com.ssafy.a705.global.components.NavBar.GroupBottomTab
+import com.ssafy.a705.global.components.navBar.BottomTab
+import com.ssafy.a705.global.components.navBar.CustomBottomNavigationBar
+import com.ssafy.a705.global.components.navBar.GroupBottomNavigationBar
+import com.ssafy.a705.global.components.navBar.GroupBottomTab
 import com.ssafy.a705.record.RecordNavRoutes
-import com.ssafy.a705.tracking.TrackingNavRoutes
+import com.ssafy.a705.domain.tracking.TrackingNavRoutes
 
 
 @Composable

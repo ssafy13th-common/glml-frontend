@@ -1,12 +1,12 @@
 package com.ssafy.a705.global.network
 
 import com.google.gson.annotations.SerializedName
-import com.ssafy.a705.group.member.GroupMembersData
-import com.ssafy.a705.group.member.InviteMemberRequest
-import com.ssafy.a705.group.member.MemberSearchData
-import com.ssafy.a705.group.memo.MemoCreateRequest
-import com.ssafy.a705.group.memo.MemoListEnvelope
-import com.ssafy.a705.group.memo.MemoUpdateRequestDto
+import com.ssafy.a705.domain.group.member.GroupMembersData
+import com.ssafy.a705.domain.group.member.InviteMemberRequest
+import com.ssafy.a705.domain.group.member.MemberSearchData
+import com.ssafy.a705.domain.group.memo.MemoCreateRequest
+import com.ssafy.a705.domain.group.memo.MemoListEnvelope
+import com.ssafy.a705.domain.group.memo.MemoUpdateRequestDto
 import retrofit2.http.*
 
 interface GroupApiService {

@@ -1,4 +1,4 @@
-package com.ssafy.a705.global.components.NavBar
+package com.ssafy.a705.global.components.navBar
 
 import com.ssafy.a705.R
 import com.ssafy.a705.global.navigation.GroupNavRoutes

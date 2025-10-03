@@ -1,7 +1,7 @@
 package com.ssafy.a705.global.network
 
-import com.ssafy.a705.group.latecheck.ApiEnvelope
-import com.ssafy.a705.group.latecheck.EmptyData
+import com.ssafy.a705.domain.group.latecheck.ApiEnvelope
+import com.ssafy.a705.domain.group.latecheck.EmptyData
 import retrofit2.Response
 import retrofit2.http.DELETE
 import retrofit2.http.POST

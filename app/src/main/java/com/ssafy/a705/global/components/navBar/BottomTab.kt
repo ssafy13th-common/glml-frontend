@@ -1,10 +1,10 @@
-package com.ssafy.a705.global.components.NavBar
+package com.ssafy.a705.global.components.navBar
 
 import com.ssafy.a705.R
 import com.ssafy.a705.global.navigation.GroupNavRoutes
 import com.ssafy.a705.global.navigation.Screen
 import com.ssafy.a705.record.RecordNavRoutes
-import com.ssafy.a705.tracking.TrackingNavRoutes
+import com.ssafy.a705.domain.tracking.TrackingNavRoutes
 
 enum class BottomTab(
     val label: String,

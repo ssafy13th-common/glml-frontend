@@ -1,4 +1,4 @@
-package com.ssafy.a705.global.components.NavBar
+package com.ssafy.a705.global.components.navBar
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -15,23 +15,18 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun CustomBottomNavigationBar(
-    selectedTab: BottomTab,
-    onTabSelected: (BottomTab) -> Unit,
+fun GroupBottomNavigationBar(
+    selectedTab: GroupBottomTab,
+    onTabSelected: (GroupBottomTab) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -42,7 +37,7 @@ fun CustomBottomNavigationBar(
             .background(Color.White),
         horizontalArrangement = Arrangement.SpaceAround
     ) {
-        BottomTab.values().forEach { tab ->
+        GroupBottomTab.values().forEach { tab ->
             val isSelected = tab == selectedTab
 
             Box(
@@ -50,11 +45,13 @@ fun CustomBottomNavigationBar(
                     .weight(1f)
                     .fillMaxHeight()
                     //.background(if (isSelected) Color(0xFF2D92FF) else Color.Transparent)
-                    .clickable { onTabSelected(tab) },
+                    .clickable {
+                        println("🔍 그룹 탭 클릭: ${tab.label}, 선택됨: $isSelected")
+                        onTabSelected(tab)
+                    },
                 contentAlignment = Alignment.Center
             ) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
-
                     Icon(
                         painter = painterResource(id = tab.iconRes), // PNG나 Vector 리소스
                         contentDescription = tab.label,
@@ -71,20 +68,5 @@ fun CustomBottomNavigationBar(
                 }
             }
         }
-    }
-}
-
-
-@Preview(showBackground = true)
-@Composable
-fun CustomBottomNavigationBarPreview() {
-    var selectedTab by remember { mutableStateOf(BottomTab.HOME) }
-
-    Column {
-        Spacer(modifier = Modifier.weight(1f)) // 상단 빈 영역
-        CustomBottomNavigationBar(
-            selectedTab = selectedTab,
-            onTabSelected = { selectedTab = it }
-        )
     }
 }

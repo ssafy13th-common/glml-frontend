@@ -1,8 +1,7 @@
 package com.ssafy.a705.global.di
 
 import android.content.Context
-import com.ssafy.a705.tracking.TrackingPreferenceManager
-// import com.ssafy.a705.tracking.TrackingPreferenceManager
+import com.ssafy.a705.domain.tracking.TrackingPreferenceManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
