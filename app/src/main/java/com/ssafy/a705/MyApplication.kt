@@ -12,7 +12,7 @@ class MyApplication : Application() {
         super.onCreate()
 
         // 카카오맵 API 키 (네이티브 앱 키)
-        KakaoMapSdk.init(this, "80b85b5c85a75003717f55ad076b05ea")
-        KakaoSdk.init(this, "80b85b5c85a75003717f55ad076b05ea")
+        KakaoMapSdk.init(this, BuildConfig.KAKAO_NATIVE_APP_KEY)
+        KakaoSdk.init(this, BuildConfig.KAKAO_NATIVE_APP_KEY)
     }
 }

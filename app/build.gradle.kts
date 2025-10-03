@@ -26,14 +26,16 @@ android {
             project.findProperty("KAKAO_REST_API_KEY") as? String ?: ""
         buildConfigField("String", "KAKAO_REST_API_KEY", "\"$kakaoRestApiKey\"")
 
+        val kakaoNativeAppKey: String =
+            project.findProperty("KAKAO_NATIVE_APP_KEY") as? String ?: ""
+        buildConfigField("String", "KAKAO_NATIVE_APP_KEY", "\"$kakaoNativeAppKey\"")
+
         ndk {
             abiFilters.add("arm64-v8a")
             abiFilters.add("armeabi-v7a")
 //            abiFilters.add("x86")
 //            abiFilters.add("x86_64")
         }
-        val kakaoNativeAppKey: String = project.findProperty("KAKAO_NATIVE_APP_KEY") as? String ?: ""
-        buildConfigField("String", "KAKAO_NATIVE_APP_KEY", "\"$kakaoNativeAppKey\"")
     }
 
     buildTypes {
