@@ -23,7 +23,12 @@ captures/
 *.iml
 
 # 필수 gradle-wrapper jar는 포함
-!gradle/wrapper/gradle-wrapper.jar
+# Gradle 폴더 전체 무시
+gradle/*
+
+# gradle/wrapper 디렉토리와 gradle-wrapper.jar는 포함
+!gradle/wrapper/
+
 
 # IntelliJ IDEA / Android Studio
 .idea/
