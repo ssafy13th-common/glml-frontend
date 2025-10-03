@@ -1,4 +1,4 @@
-package com.ssafy.a705.feature.record
+package com.ssafy.a705.feature.record.diary
 
 import android.app.DatePickerDialog
 import android.net.Uri
@@ -30,11 +30,13 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Dialog
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import coil.compose.SubcomposeAsyncImage
 import coil.imageLoader
 import coil.request.ImageRequest
+import com.ssafy.a705.R
 import com.ssafy.a705.common.components.HeaderRow
 import com.ssafy.a705.common.components.MenuAction
 import java.text.SimpleDateFormat
@@ -239,7 +241,7 @@ fun RecordUpdateScreen(
                                 },
                                 error = {
                                     Image(
-                                        painter = painterResource(com.ssafy.a705.R.drawable.default_img),
+                                        painter = painterResource(R.drawable.default_img),
                                         contentDescription = null,
                                         modifier = Modifier.fillMaxSize(),
                                         contentScale = ContentScale.Fit
@@ -330,7 +332,7 @@ fun RecordUpdateScreen(
 
 @Composable
 private fun LoadingDialog(message: String) {
-    androidx.compose.ui.window.Dialog(onDismissRequest = { }) {
+    Dialog(onDismissRequest = { }) {
         Surface(shape = androidx.compose.foundation.shape.RoundedCornerShape(16.dp)) {
             Column(
                 modifier = Modifier.padding(24.dp),
@@ -344,7 +346,7 @@ private fun LoadingDialog(message: String) {
     }
 }
 
-private fun mergeImages(localUris: List<android.net.Uri>, remoteUrls: List<String>): List<Any> {
+private fun mergeImages(localUris: List<Uri>, remoteUrls: List<String>): List<Any> {
     // Coil은 model = Any로 Uri/String 둘 다 지원
     return buildList {
         addAll(localUris)   // Uri

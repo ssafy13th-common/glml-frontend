@@ -1,4 +1,4 @@
-package com.ssafy.a705.feature.record
+package com.ssafy.a705.feature.record.diary
 
 import android.app.DatePickerDialog
 import android.net.Uri
@@ -12,6 +12,7 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
@@ -26,6 +27,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Dialog
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import coil.imageLoader
@@ -289,9 +291,9 @@ fun RecordCreateScreen(
 
 @Composable
 private fun LoadingDialog(message: String) {
-    androidx.compose.ui.window.Dialog(onDismissRequest = { /* 백버튼/밖터치로 닫히지 않게 */ }) {
+    Dialog(onDismissRequest = { /* 백버튼/밖터치로 닫히지 않게 */ }) {
         Surface(
-            shape = androidx.compose.foundation.shape.RoundedCornerShape(16.dp)
+            shape = RoundedCornerShape(16.dp)
         ) {
             Column(
                 modifier = Modifier.padding(24.dp),

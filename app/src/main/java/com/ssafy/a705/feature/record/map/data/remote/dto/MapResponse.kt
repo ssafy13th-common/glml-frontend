@@ -1,4 +1,4 @@
-package com.ssafy.a705.feature.record
+package com.ssafy.a705.feature.record.map.data.remote.dto
 
 import com.google.gson.annotations.SerializedName
 

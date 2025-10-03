@@ -1,4 +1,4 @@
-package com.ssafy.a705.feature.record
+package com.ssafy.a705.feature.record.map.ui
 
 import android.graphics.Point
 import android.util.Log
@@ -34,9 +34,13 @@ import com.ssafy.a705.common.components.ColorPickerDialog
 import com.ssafy.a705.common.components.HeaderRow
 import com.ssafy.a705.common.components.KakaoMapView
 import com.ssafy.a705.common.navigation.DoubleBackToExitHandler
+import com.ssafy.a705.feature.record.diary.RecordNavRoutes
+import com.ssafy.a705.feature.record.diary.RecordTabBar
 import com.ssafy.a705.feature.record.geojson.GeoJsonDrawer
 import com.ssafy.a705.feature.record.geojson.GeoJsonLoader
 import com.ssafy.a705.feature.record.geojson.GeoJsonParser
+import com.ssafy.a705.feature.record.map.ui.components.MapMenu
+import kotlin.collections.get
 
 @Composable
 fun MapScreen(

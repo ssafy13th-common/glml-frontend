@@ -20,12 +20,12 @@ import com.ssafy.a705.feature.group.receipt.ReceiptScreen
 import com.ssafy.a705.feature.group.latecheck.LateCheckScreen
 import com.ssafy.a705.feature.group.chat.GroupChatScreen
 import com.ssafy.a705.feature.group.member.GroupMemberScreen
-import com.ssafy.a705.feature.record.MapScreen
-import com.ssafy.a705.feature.record.RecordCreateScreen
-import com.ssafy.a705.feature.record.RecordViewModel
-import com.ssafy.a705.feature.record.RecordDetailScreen
-import com.ssafy.a705.feature.record.RecordNavRoutes
-import com.ssafy.a705.feature.record.RecordScreen
+import com.ssafy.a705.feature.record.map.ui.MapScreen
+import com.ssafy.a705.feature.record.diary.RecordCreateScreen
+import com.ssafy.a705.feature.record.diary.RecordViewModel
+import com.ssafy.a705.feature.record.diary.RecordDetailScreen
+import com.ssafy.a705.feature.record.diary.RecordNavRoutes
+import com.ssafy.a705.feature.record.diary.RecordScreen
 import com.ssafy.a705.feature.tracking.TrackingListScreen
 import com.ssafy.a705.feature.tracking.TrackingNavRoutes
 import com.ssafy.a705.feature.tracking.TrackingScreen
@@ -39,7 +39,7 @@ import com.ssafy.a705.feature.mypage.EditProfileScreen
 import com.ssafy.a705.feature.mypage.MessageListEntry
 import com.ssafy.a705.feature.mypage.MyPageScreen
 import com.ssafy.a705.feature.mypage.MyPostAndCommentScreen
-import com.ssafy.a705.feature.record.RecordUpdateScreen
+import com.ssafy.a705.feature.record.diary.RecordUpdateScreen
 import com.ssafy.a705.feature.sign.OnboardingIntroScreen
 import com.ssafy.a705.feature.sign.OnboardingScreen
 import com.ssafy.a705.feature.sign.PhoneVerifyScreen

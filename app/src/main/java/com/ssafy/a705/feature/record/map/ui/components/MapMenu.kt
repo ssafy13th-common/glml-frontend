@@ -1,4 +1,4 @@
-package com.ssafy.a705.feature.record
+package com.ssafy.a705.feature.record.map.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -11,6 +11,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import androidx.compose.foundation.Canvas
+import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalDensity
 
@@ -58,7 +59,7 @@ fun MapMenu(
                 modifier = Modifier
                     .size(width = 20.dp, height = 10.dp)
             ) {
-                val path = androidx.compose.ui.graphics.Path().apply {
+                val path = Path().apply {
                     moveTo(0f, 0f)
                     lineTo(size.width / 2f, size.height)
                     lineTo(size.width, 0f)

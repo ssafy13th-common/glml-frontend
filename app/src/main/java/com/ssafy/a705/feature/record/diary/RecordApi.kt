@@ -1,4 +1,4 @@
-package com.ssafy.a705.feature.record
+package com.ssafy.a705.feature.record.diary
 
 import com.ssafy.a705.feature.model.resp.BasicResponse
 import retrofit2.http.Body

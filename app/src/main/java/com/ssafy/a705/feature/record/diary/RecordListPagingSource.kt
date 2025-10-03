@@ -1,4 +1,4 @@
-package com.ssafy.a705.feature.record
+package com.ssafy.a705.feature.record.diary
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState

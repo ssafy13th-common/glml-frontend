@@ -1,4 +1,4 @@
-package com.ssafy.a705.feature.record
+package com.ssafy.a705.feature.record.diary
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
