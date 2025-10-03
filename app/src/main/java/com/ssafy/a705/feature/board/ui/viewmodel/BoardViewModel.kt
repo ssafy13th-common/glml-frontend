@@ -3,7 +3,7 @@ package com.ssafy.a705.feature.board.ui.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ssafy.a705.common.network.base.ApiException
-import com.ssafy.a705.feature.board.data.model.response.PostListResponse
+import com.ssafy.a705.feature.board.data.model.response.PostData
 import com.ssafy.a705.feature.board.data.repository.BoardRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -21,8 +21,8 @@ class BoardViewModel @Inject constructor(
     private val _errorMessage = MutableStateFlow<String?>(null)
     val errorMessage: StateFlow<String?> = _errorMessage
 
-    private val _postList = MutableStateFlow<List<PostListResponse>>(emptyList())
-    val postList: StateFlow<List<PostListResponse>> = _postList
+    private val _postList = MutableStateFlow<List<PostData>>(emptyList())
+    val postList: StateFlow<List<PostData>> = _postList
 
     private var nextCursor: Long? = null
     private var isLoading = false

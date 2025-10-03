@@ -35,8 +35,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import com.ssafy.a705.R
 import com.ssafy.a705.common.components.HeaderRow
-import com.ssafy.a705.feature.board.data.model.response.PostDetailResponse
-import com.ssafy.a705.feature.board.data.model.response.PostListResponse
+import com.ssafy.a705.feature.board.data.model.response.PostData
 import com.ssafy.a705.feature.board.ui.viewmodel.BoardViewModel
 
 
@@ -198,7 +197,7 @@ private fun SimpleSearchBar(
 }
 
 @Composable
-fun WithPostCard(post: PostListResponse, onClick: () -> Unit) {
+fun WithPostCard(post: PostData, onClick: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxWidth()

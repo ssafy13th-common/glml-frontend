@@ -19,8 +19,9 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.ssafy.a705.feature.board.data.model.response.PostData
+import com.ssafy.a705.feature.board.data.model.response.PostListResponse
 import com.ssafy.a705.feature.controller.viewmodel.MyPageViewModel
-import com.ssafy.a705.feature.board.data.model.response.BoardDto
 import kotlinx.coroutines.launch
 import kotlin.collections.distinctBy
 import kotlin.collections.filter
@@ -74,24 +75,28 @@ fun MyPostAndCommentScreen(
     }
 
     // 검색 + 중복 제거
-    val filteredBoards = remember(q, myBoards) {
-        val base = if (q.isBlank()) myBoards
-        else myBoards.filter { it.title.contains(q, true) || it.content.contains(q, true) }
-        base.distinctBy { it.boardId }
+    val filteredBoards: List<PostData> = remember(q, myBoards) {
+        val base: List<PostData> = if (q.isBlank()) myBoards
+        else myBoards.filter { it.title.contains(q, true)
+                || it.summary.contains(q, true) }
+        base.distinctBy { it.id }
     }
 
 
+
+
     // 댓글 DTO -> 화면용 매핑 (boardtitle은 추후 보강)
-    val commentItems = remember(myComments) {
+    val commentItems: List<CommentItem> = remember(myComments) {
         myComments.map { dto ->
             CommentItem(
                 boardId = dto.boardId,
                 commentId = dto.commentId,
-                boardtitle = dto.boardTitle,   // 지금은 API 호출 안 하므로 플레이스홀더
+                boardtitle = dto.boardTitle,
                 comment = dto.content
             )
         }
     }
+
     val filteredComments = remember(q, commentItems) {
         if (q.isBlank()) commentItems
         else commentItems.filter { it.comment.contains(q, true) || it.boardtitle.contains(q, true) }
@@ -220,7 +225,7 @@ data class CommentItem(
 
 @Composable
 private fun PostList(
-    boards: List<BoardDto>,
+    boards: List<PostData>,
     onPostClick: (boardId: Long) -> Unit,
     listState: LazyListState,
     modifier: Modifier = Modifier
@@ -231,12 +236,12 @@ private fun PostList(
     ) {
         items(
             items = boards,
-            key = { it.boardId }
+            key = { it.id }
         ) { dto ->
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .clickable { onPostClick(dto.boardId) }
+                    .clickable { onPostClick(dto.id) }
                     .padding(horizontal = 16.dp, vertical = 12.dp)
             ) {
                 Text(
@@ -247,7 +252,7 @@ private fun PostList(
                 )
                 Spacer(Modifier.height(6.dp))
                 Text(
-                    text = dto.content,
+                    text = dto.summary,
                     style = MaterialTheme.typography.bodyMedium,
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis
