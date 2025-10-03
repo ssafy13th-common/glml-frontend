@@ -1,0 +1,52 @@
+
+# Android/Gradle
+.gradle/
+build/
+captures/
+.externalNativeBuild/
+.cxx/
+*.apk
+*.ap_
+*.dex
+*.class
+*.log
+*.hprof
+
+
+/app/build
+/app/.gradle
+/app/release
+/app/proguard-rules.pro
+/.gradle/
+
+/.idea/
+*.iml
+
+# 필수 gradle-wrapper jar는 포함
+!gradle/wrapper/gradle-wrapper.jar
+
+# IntelliJ IDEA / Android Studio
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# 필요 시 공유할 설정 디렉토리만 제외
+!.idea/codeStyles/
+!.idea/inspectionProfiles/
+
+# VSCode
+.vscode/
+
+# 시스템 파일
+.DS_Store
+Thumbs.db
+
+# 환경변수 파일
+.env
+
+# Jetpack Compose preview cache
+*.preview.cache
+
+local.properties
