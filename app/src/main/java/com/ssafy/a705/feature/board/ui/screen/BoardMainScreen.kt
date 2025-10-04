@@ -1,46 +1,45 @@
 package com.ssafy.a705.feature.board.ui.screen
 
 import android.widget.Toast
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Close
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
-import com.ssafy.a705.R
 import com.ssafy.a705.common.components.HeaderRow
-import com.ssafy.a705.feature.board.data.model.response.PostData
+import com.ssafy.a705.feature.board.ui.component.PostCard
+import com.ssafy.a705.feature.board.ui.component.SimpleSearchBar
 import com.ssafy.a705.feature.board.ui.viewmodel.BoardViewModel
 
 
 @Composable
-fun WithMainScreen(
+fun BoardMainScreen(
     onNavigateToDetail: (Long) -> Unit,
     onBack: () -> Unit,
     onNavigateToWrite: () -> Unit,
@@ -144,86 +143,11 @@ fun WithMainScreen(
                     }
                 } else {
                     items(itemsToShow) { post ->
-                        WithPostCard(post = post) {
+                        PostCard(post = post) {
                             onNavigateToDetail(post.id)
                         }
                     }
                 }
-            }
-        }
-    }
-}
-
-@Composable
-private fun SimpleSearchBar(
-    value: String,
-    onValueChange: (String) -> Unit,
-    onClear: () -> Unit
-) {
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 10.dp)
-            .height(44.dp)
-            .background(Color(0xFFE5E5E5), shape = RoundedCornerShape(22.dp))
-            .padding(horizontal = 12.dp)
-    ) {
-        Icon(Icons.Default.Search, contentDescription = null, tint = Color.Gray)
-        Spacer(Modifier.width(6.dp))
-        BasicTextField(
-            value = value,
-            onValueChange = onValueChange,
-            singleLine = true,
-            modifier = Modifier.weight(1f),
-            textStyle = TextStyle(fontSize = 16.sp),
-            decorationBox = { inner ->
-                if (value.isEmpty()) {
-                    Text("검색", color = Color.Gray, fontSize = 16.sp)
-                }
-                inner()
-            }
-        )
-        if (value.isNotEmpty()) {
-            Spacer(Modifier.width(6.dp))
-            Icon(
-                imageVector = Icons.Default.Close,
-                contentDescription = "지우기",
-                modifier = Modifier.clickable { onClear() },
-                tint = Color.Gray
-            )
-        }
-    }
-}
-
-@Composable
-fun WithPostCard(post: PostData, onClick: () -> Unit) {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clickable { onClick() }
-            .border(0.5.dp, Color.LightGray)
-            .padding(horizontal = 30.dp)
-            .padding(vertical = 10.dp)
-    ) {
-        Text(post.title, fontWeight = FontWeight.Bold, fontSize = 16.sp)
-        Spacer(Modifier.height(8.dp))
-        Text(post.summary, fontSize = 14.sp, color = Color.Gray)
-        Spacer(Modifier.height(8.dp))
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Image(
-                painter = painterResource(id = R.drawable.comments),
-                contentDescription = "댓글 말풍선",
-                modifier = Modifier.size(16.dp)
-            )
-            Spacer(modifier = Modifier.width(3.dp))
-            Text("${post.comments}", fontSize = 12.sp, color = Color.Black)
-            Spacer(Modifier.weight(1f))
-            Spacer(modifier = Modifier.width(6.dp))
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(post.author, modifier = Modifier.padding(start = 4.dp), fontSize = 12.sp)
-                Spacer(modifier = Modifier.width(20.dp))
-                Text(post.updatedAt, fontSize = 11.sp)
             }
         }
     }

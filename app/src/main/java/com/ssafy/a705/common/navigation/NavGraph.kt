@@ -4,42 +4,41 @@ import android.net.Uri
 import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.navigation
 import androidx.navigation.navArgument
+import androidx.navigation.navDeepLink
+import androidx.navigation.navigation
+import com.ssafy.a705.feature.board.ui.screen.BoardMainScreen
+import com.ssafy.a705.feature.board.ui.screen.PostDetailScreen
+import com.ssafy.a705.feature.board.ui.screen.WithChatScreen
+import com.ssafy.a705.feature.board.ui.screen.WithPostWriteScreen
+import com.ssafy.a705.feature.group.chat.GroupChatScreen
 import com.ssafy.a705.feature.group.create.GroupCreateScreen
 import com.ssafy.a705.feature.group.edit.GroupEditScreen
+import com.ssafy.a705.feature.group.edit.GroupEditViewModel
+import com.ssafy.a705.feature.group.latecheck.LateCheckScreen
 import com.ssafy.a705.feature.group.list.GroupListScreen
+import com.ssafy.a705.feature.group.member.GroupMemberScreen
 import com.ssafy.a705.feature.group.memo.GroupMemoScreen
 import com.ssafy.a705.feature.group.photo.GroupPhotoScreen
 import com.ssafy.a705.feature.group.receipt.ReceiptScreen
-import com.ssafy.a705.feature.group.latecheck.LateCheckScreen
-import com.ssafy.a705.feature.group.chat.GroupChatScreen
-import com.ssafy.a705.feature.group.member.GroupMemberScreen
-import com.ssafy.a705.feature.record.map.ui.MapScreen
-import com.ssafy.a705.feature.record.diary.RecordCreateScreen
-import com.ssafy.a705.feature.record.diary.RecordViewModel
-import com.ssafy.a705.feature.record.diary.RecordDetailScreen
-import com.ssafy.a705.feature.record.diary.RecordNavRoutes
-import com.ssafy.a705.feature.record.diary.RecordScreen
-import com.ssafy.a705.feature.tracking.TrackingListScreen
-import com.ssafy.a705.feature.tracking.TrackingNavRoutes
-import com.ssafy.a705.feature.tracking.TrackingScreen
-import com.ssafy.a705.feature.tracking.TrackingUpdateScreen
-import com.ssafy.a705.feature.tracking.TrackingViewModel
-import androidx.compose.runtime.remember
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.navDeepLink
-import com.ssafy.a705.feature.group.edit.GroupEditViewModel
 import com.ssafy.a705.feature.mypage.EditProfileScreen
 import com.ssafy.a705.feature.mypage.MessageListEntry
 import com.ssafy.a705.feature.mypage.MyPageScreen
 import com.ssafy.a705.feature.mypage.MyPostAndCommentScreen
+import com.ssafy.a705.feature.record.diary.RecordCreateScreen
+import com.ssafy.a705.feature.record.diary.RecordDetailScreen
+import com.ssafy.a705.feature.record.diary.RecordNavRoutes
+import com.ssafy.a705.feature.record.diary.RecordScreen
 import com.ssafy.a705.feature.record.diary.RecordUpdateScreen
+import com.ssafy.a705.feature.record.diary.RecordViewModel
+import com.ssafy.a705.feature.record.map.ui.MapScreen
 import com.ssafy.a705.feature.sign.OnboardingIntroScreen
 import com.ssafy.a705.feature.sign.OnboardingScreen
 import com.ssafy.a705.feature.sign.PhoneVerifyScreen
@@ -49,10 +48,11 @@ import com.ssafy.a705.feature.signup.SignupEmailVerifyViewModel
 import com.ssafy.a705.feature.signup.SignupNavRoutes
 import com.ssafy.a705.feature.signup.SignupScreen
 import com.ssafy.a705.feature.signup.SignupViewModel
-import com.ssafy.a705.feature.board.ui.screen.WithChatScreen
-import com.ssafy.a705.feature.board.ui.screen.WithMainScreen
-import com.ssafy.a705.feature.board.ui.screen.PostDetailScreen
-import com.ssafy.a705.feature.board.ui.screen.WithPostWriteScreen
+import com.ssafy.a705.feature.tracking.TrackingListScreen
+import com.ssafy.a705.feature.tracking.TrackingNavRoutes
+import com.ssafy.a705.feature.tracking.TrackingScreen
+import com.ssafy.a705.feature.tracking.TrackingUpdateScreen
+import com.ssafy.a705.feature.tracking.TrackingViewModel
 
 @Composable
 fun NavGraph(
@@ -210,7 +210,7 @@ fun NavGraph(
 
         // 동행 메인
         composable(Screen.With.route) {
-            WithMainScreen(
+            BoardMainScreen(
                 onNavigateToDetail = { postId ->
                     navController.navigate(Screen.WithDetail(postId).route)
                 },
