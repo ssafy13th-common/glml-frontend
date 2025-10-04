@@ -1,6 +1,5 @@
 package com.ssafy.a705.common.network
 
-import com.ssafy.a705.common.network.mypage.MypageApi
 import com.ssafy.a705.common.network.sign.SignApi
 import com.ssafy.a705.common.network.verification.VerificationApi
 import com.ssafy.a705.common.network.with.PhoneRequirementInterceptor
@@ -37,5 +36,5 @@ class ApiClient @Inject constructor(
     val commentApi: CommentApi = retrofit.create(CommentApi::class.java)
     val verificationApi: VerificationApi = retrofit.create(VerificationApi::class.java)
     val signApi: SignApi = retrofit.create(SignApi::class.java)
-    val mypageApi: MypageApi = retrofit.create(MypageApi::class.java)
+
 }

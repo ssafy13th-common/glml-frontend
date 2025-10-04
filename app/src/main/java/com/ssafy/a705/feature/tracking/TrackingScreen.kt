@@ -55,7 +55,7 @@ import com.kakao.vectormap.route.RouteLineStyles
 import com.ssafy.a705.R
 import com.ssafy.a705.common.components.HeaderRow
 import com.ssafy.a705.common.components.KakaoMapView
-import com.ssafy.a705.feature.controller.viewmodel.MyPageViewModel
+import com.ssafy.a705.feature.mypage.ui.viewmodel.MyPageViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 

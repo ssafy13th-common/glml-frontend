@@ -28,10 +28,10 @@ import com.ssafy.a705.feature.group.member.GroupMemberScreen
 import com.ssafy.a705.feature.group.memo.GroupMemoScreen
 import com.ssafy.a705.feature.group.photo.GroupPhotoScreen
 import com.ssafy.a705.feature.group.receipt.ReceiptScreen
-import com.ssafy.a705.feature.mypage.EditProfileScreen
-import com.ssafy.a705.feature.mypage.MessageListEntry
-import com.ssafy.a705.feature.mypage.MyPageScreen
-import com.ssafy.a705.feature.mypage.MyPostAndCommentScreen
+import com.ssafy.a705.feature.mypage.ui.screen.EditProfileScreen
+import com.ssafy.a705.feature.mypage.ui.screen.MessageListEntry
+import com.ssafy.a705.feature.mypage.ui.screen.MyPageScreen
+import com.ssafy.a705.feature.mypage.ui.screen.MyPostAndCommentScreen
 import com.ssafy.a705.feature.record.diary.RecordCreateScreen
 import com.ssafy.a705.feature.record.diary.RecordDetailScreen
 import com.ssafy.a705.feature.record.diary.RecordNavRoutes

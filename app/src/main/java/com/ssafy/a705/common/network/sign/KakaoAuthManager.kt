@@ -9,6 +9,8 @@ import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.user.UserApiClient
 import com.kakao.sdk.user.model.User
 import com.ssafy.a705.common.network.TokenManager
+import com.ssafy.a705.feature.auth.data.model.request.KakaoLoginRequest
+import com.ssafy.a705.feature.auth.data.source.AuthApi
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -32,6 +34,7 @@ class KakaoAuthManager @Inject constructor(
     private val tokenManager: TokenManager,
     private val sessionManager: SessionManager,
     private val signApi: SignApi,
+    private val authApi: AuthApi,
     @ApplicationContext private val context: Context
 ) {
 
@@ -92,8 +95,8 @@ class KakaoAuthManager @Inject constructor(
         val freshAccessToken = currentToken?.accessToken ?: throw IllegalStateException("카카오 토큰 없음")
         Log.d("KKAKAO_LOGIN", "$currentToken")
         // 2. 서버와 교환
-        val res = signApi.loginWithKakao(
-            SignApi.KakaoLoginRequest(
+        val res = authApi.loginWithKakao(
+            KakaoLoginRequest(
                 accessToken = freshAccessToken,
                 gender = gender,
                 name = name

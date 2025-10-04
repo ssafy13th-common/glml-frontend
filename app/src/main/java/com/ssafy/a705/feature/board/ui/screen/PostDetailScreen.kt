@@ -14,7 +14,7 @@ import com.ssafy.a705.feature.board.ui.component.EditDeleteBottomSheet
 import com.ssafy.a705.feature.board.ui.component.PostDetailContent
 import com.ssafy.a705.feature.board.ui.viewmodel.PostDetailViewModel
 import com.ssafy.a705.feature.controller.viewmodel.AppChatBridgeViewModel
-import com.ssafy.a705.feature.controller.viewmodel.MyPageViewModel
+import com.ssafy.a705.feature.mypage.ui.viewmodel.MyPageViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 

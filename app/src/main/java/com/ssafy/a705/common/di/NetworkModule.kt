@@ -1,30 +1,31 @@
 package com.ssafy.a705.common.di
 
 import android.content.Context
-import com.ssafy.a705.feature.chatSet.api.ChatApi
 import com.ssafy.a705.common.network.AuthInterceptor
 import com.ssafy.a705.common.network.GroupApiService
 import com.ssafy.a705.common.network.LiveLocationStatusApi
-import com.ssafy.a705.common.network.mypage.MypageApi
+import com.ssafy.a705.common.network.sign.SessionManager
 import com.ssafy.a705.common.network.sign.SignApi
 import com.ssafy.a705.feature.board.data.source.BoardApi
-import com.ssafy.a705.feature.signup.SignupApi
-import com.ssafy.a705.feature.record.map.data.remote.api.MapApi
-import com.ssafy.a705.feature.record.diary.RecordApi
-import com.ssafy.a705.feature.tracking.TrackingApi
-import com.ssafy.a705.feature.group.latecheck.LateFeeStorage
-import com.ssafy.a705.feature.group.latecheck.LiveLocationWebSocketClient
-import com.ssafy.a705.feature.group.latecheck.LiveLocationRepository
-import com.ssafy.a705.common.network.sign.SessionManager
 import com.ssafy.a705.feature.board.data.source.CommentApi
+import com.ssafy.a705.feature.chatSet.api.ChatApi
 import com.ssafy.a705.feature.group.chat.GroupChatApi
 import com.ssafy.a705.feature.group.chat.GroupChatRepository
 import com.ssafy.a705.feature.group.chat.GroupChatWebSocketClient
+import com.ssafy.a705.feature.group.latecheck.LateFeeStorage
+import com.ssafy.a705.feature.group.latecheck.LiveLocationRepository
+import com.ssafy.a705.feature.group.latecheck.LiveLocationWebSocketClient
+import com.ssafy.a705.feature.auth.data.source.AuthApi
+import com.ssafy.a705.feature.mypage.data.source.MyPageApi
+import com.ssafy.a705.feature.record.diary.RecordApi
+import com.ssafy.a705.feature.record.map.data.remote.api.MapApi
+import com.ssafy.a705.feature.signup.SignupApi
+import com.ssafy.a705.feature.tracking.TrackingApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -35,7 +36,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
-    private const val BASE_URL = "https://glml.store/"  // 백 서버 주소
+    private const val BASE_URL = "https://glml.store/api/"  // 백 서버 주소
 
     // Logger (필요시 다른 곳에서도 재사용 가능하도록 분리)
     @Provides
@@ -66,28 +67,50 @@ object NetworkModule {
             .build()
 
     // === API interfaces (모두 공용 Retrofit 사용) ===
-    @Provides @Singleton fun provideSignApi(retrofit: Retrofit): SignApi =
+    @Provides
+    @Singleton
+    fun provideSignApi(retrofit: Retrofit): SignApi =
         retrofit.create(SignApi::class.java)
 
-    @Provides @Singleton fun provideSignupApi(retrofit: Retrofit): SignupApi =
+    @Provides
+    @Singleton
+    fun provideSignupApi(retrofit: Retrofit): SignupApi =
         retrofit.create(SignupApi::class.java)
 
-    @Provides @Singleton fun provideTrackingApi(retrofit: Retrofit): TrackingApi =
+    @Provides
+    @Singleton
+    fun provideTrackingApi(retrofit: Retrofit): TrackingApi =
         retrofit.create(TrackingApi::class.java)
 
-    @Provides @Singleton fun provideLocationApi(retrofit: Retrofit): MapApi =
+    @Provides
+    @Singleton
+    fun provideLocationApi(retrofit: Retrofit): MapApi =
         retrofit.create(MapApi::class.java)
 
-    @Provides @Singleton fun provideDiaryApi(retrofit: Retrofit): RecordApi =
+    @Provides
+    @Singleton
+    fun provideDiaryApi(retrofit: Retrofit): RecordApi =
         retrofit.create(RecordApi::class.java)
 
-    @Provides @Singleton fun provideMypageApi(retrofit: Retrofit): MypageApi =
-        retrofit.create(MypageApi::class.java)
+    @Provides
+    @Singleton
+    fun provideMyPageApi(retrofit: Retrofit): MyPageApi =
+        retrofit.create(MyPageApi::class.java)
 
-    @Provides @Singleton fun provideWithApi(retrofit: Retrofit): BoardApi =
+    @Provides
+    @Singleton
+    fun provideAuthAPi(retrofit: Retrofit): AuthApi =
+        retrofit.create(AuthApi::class.java)
+
+
+    @Provides
+    @Singleton
+    fun provideWithApi(retrofit: Retrofit): BoardApi =
         retrofit.create(BoardApi::class.java)
 
-    @Provides @Singleton fun provideCommentApi(retrofit: Retrofit): CommentApi =
+    @Provides
+    @Singleton
+    fun provideCommentApi(retrofit: Retrofit): CommentApi =
         retrofit.create(CommentApi::class.java)
 
     // 그룹 API도 공용 Retrofit 사용 (별도 2중 헤더/전용 Gson 제거)
@@ -125,13 +148,14 @@ object NetworkModule {
         LiveLocationRepository(webSocketClient, sessionManager)
 
 
-
-    @Provides @Singleton
+    @Provides
+    @Singleton
     fun provideChatApi(retrofit: Retrofit): ChatApi =
         retrofit.create(ChatApi::class.java)
 
     // 그룹 채팅 API 추가
-    @Provides @Singleton
+    @Provides
+    @Singleton
     fun provideGroupChatApi(retrofit: Retrofit): GroupChatApi =
         retrofit.create(GroupChatApi::class.java)
 

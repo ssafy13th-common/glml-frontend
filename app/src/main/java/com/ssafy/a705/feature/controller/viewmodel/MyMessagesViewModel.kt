@@ -6,7 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ssafy.a705.feature.chatSet.api.ChatApi
-import com.ssafy.a705.feature.mypage.ChatItem
+import com.ssafy.a705.feature.mypage.ui.screen.ChatItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import retrofit2.HttpException

@@ -50,7 +50,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.kakao.sdk.auth.model.OAuthToken
 import com.ssafy.a705.R
-import com.ssafy.a705.feature.controller.viewmodel.OnboardingViewModel
+import com.ssafy.a705.feature.auth.ui.viewmodel.OnboardingViewModel
 import com.ssafy.a705.common.network.sign.SignApi
 import com.ssafy.a705.feature.signup.SignupViewModel
 import kotlinx.coroutines.launch

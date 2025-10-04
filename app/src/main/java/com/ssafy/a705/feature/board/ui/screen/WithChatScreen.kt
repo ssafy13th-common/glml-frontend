@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ssafy.a705.common.components.InputBar
 import com.ssafy.a705.feature.controller.viewmodel.AppChatBridgeViewModel
-import com.ssafy.a705.feature.controller.viewmodel.MyPageViewModel
+import com.ssafy.a705.feature.mypage.ui.viewmodel.MyPageViewModel
 import com.ssafy.a705.feature.chatSet.dto.ChatMessage
 import kotlinx.coroutines.flow.distinctUntilChanged
 import java.text.SimpleDateFormat
