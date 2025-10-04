@@ -33,7 +33,7 @@ class MyPageRepositoryImpl @Inject constructor(
         return res.data ?: throw ApiException("마이페이지 정보를 불러오지 못했습니다.")
     }
 
-    override suspend fun patchNickname(body: PatchNicknameRequest): Unit {
+    override suspend fun patchNickname(body: PatchNicknameRequest) {
         val res = remoteDataSource.patchNickname(body)
         res.message?.let { throw ApiException(it) }
     }
