@@ -16,28 +16,28 @@ import retrofit2.http.Query
 
 interface BoardApi {
 
-    @GET("/v1/boards/{boardId}")
+    @GET("v1/boards/{boardId}")
     suspend fun getPostDetail(
         @Path("boardId") boardId: Long
     ): BaseResponse<PostDetailResponse>
 
-    @GET("/v1/boards")
+    @GET("v1/boards")
     suspend fun getPosts(
         @Query("cursorId") cursorId: Long? = null
     ): BaseResponse<CursorData>
 
-    @POST("/v1/boards")
+    @POST("v1/boards")
     suspend fun writePost(
         @Body request: WritePostRequest
     ): BaseResponse<WritePostResponse>
 
-    @PUT("/v1/boards/{id}")
+    @PUT("v1/boards/{id}")
     suspend fun updatePost(
         @Path("id") postId: Long,
         @Body request: UpdatePostRequest
     ): BaseResponse<Unit>
 
-    @DELETE("/v1/boards/{id}")
+    @DELETE("v1/boards/{id}")
     suspend fun deletePost(
         @Path("id") postId: Long
     ): BaseResponse<Unit>
