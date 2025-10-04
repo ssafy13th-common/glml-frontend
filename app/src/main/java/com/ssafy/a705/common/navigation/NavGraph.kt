@@ -51,7 +51,7 @@ import com.ssafy.a705.feature.signup.SignupScreen
 import com.ssafy.a705.feature.signup.SignupViewModel
 import com.ssafy.a705.feature.board.ui.screen.WithChatScreen
 import com.ssafy.a705.feature.board.ui.screen.WithMainScreen
-import com.ssafy.a705.feature.board.ui.screen.WithPostDetailScreen
+import com.ssafy.a705.feature.board.ui.screen.PostDetailScreen
 import com.ssafy.a705.feature.board.ui.screen.WithPostWriteScreen
 
 @Composable
@@ -229,7 +229,7 @@ fun NavGraph(
             arguments = listOf(navArgument("postId") { type = NavType.LongType })
         ) { backStackEntry ->
             val postId = backStackEntry.arguments?.getLong("postId") ?: return@composable
-            WithPostDetailScreen(
+            PostDetailScreen(
                 postId = postId,
                 navController = navController
             )

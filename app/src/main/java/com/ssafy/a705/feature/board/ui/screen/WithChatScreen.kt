@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.ssafy.a705.common.components.InputBar
 import com.ssafy.a705.feature.controller.viewmodel.AppChatBridgeViewModel
 import com.ssafy.a705.feature.controller.viewmodel.MyPageViewModel
 import com.ssafy.a705.feature.chatSet.dto.ChatMessage
@@ -220,7 +221,7 @@ fun WithChatContent(
         }
 
         // 프로젝트 공용 입력바
-        CommentInputBar(
+        InputBar(
             value = input,
             onValueChange = { input = it },
             onSend = {

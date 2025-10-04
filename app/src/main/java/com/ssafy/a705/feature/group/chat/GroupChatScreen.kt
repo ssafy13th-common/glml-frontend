@@ -40,12 +40,12 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
+import com.ssafy.a705.common.components.InputBar
 import com.ssafy.a705.feature.group.common.component.GroupStatusChip
 import com.ssafy.a705.feature.group.common.component.GroupStatusChipSize
 import com.ssafy.a705.feature.group.common.component.GroupTopBar
 import com.ssafy.a705.feature.group.common.model.ChatMessage
 import com.ssafy.a705.feature.group.common.model.MessageStatus
-import com.ssafy.a705.feature.board.ui.screen.CommentInputBar
 import java.time.Instant
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -69,7 +69,8 @@ fun GroupChatScreen(
     // 새 메시지 자동 스크롤 (reverseLayout = true 사용 시 첫 번째 아이템이 최신)
     LaunchedEffect(state.messages.size) {
         if (state.messages.isNotEmpty()) {
-            val firstVisibleItemIndex = listState.layoutInfo.visibleItemsInfo.firstOrNull()?.index ?: 0
+            val firstVisibleItemIndex =
+                listState.layoutInfo.visibleItemsInfo.firstOrNull()?.index ?: 0
             if (firstVisibleItemIndex <= 3 || state.messages.firstOrNull()?.isMine == true) {
                 listState.animateScrollToItem(0)
             }
@@ -158,9 +159,14 @@ fun GroupChatScreen(
                         // 같은 날 안에서도 최신 메시지가 아래로 가도록 내림차순
                         val group = groupRaw.sortedByDescending { parseEpochMillis(it.timestamp) }
 
-                        items(group, key = { it.messageId.ifEmpty { it.tempId ?: "" } }) { message ->
+                        items(
+                            group,
+                            key = { it.messageId.ifEmpty { it.tempId ?: "" } }) { message ->
                             val timeText = formatChatTimeKST(message.timestamp)
-                            val unread = if (message.isMine) maxOf(0, message.totalMembers - message.readCount - 1) else 0
+                            val unread = if (message.isMine) maxOf(
+                                0,
+                                message.totalMembers - message.readCount - 1
+                            ) else 0
 
                             Row(
                                 modifier = Modifier
@@ -214,6 +220,7 @@ fun GroupChatScreen(
                                                             strokeWidth = 1.dp
                                                         )
                                                     }
+
                                                     MessageStatus.SENT -> Unit // 읽음 표시 없음
                                                     MessageStatus.FAILED -> {
                                                         Text(
@@ -262,6 +269,7 @@ fun GroupChatScreen(
                                                         strokeWidth = 1.dp
                                                     )
                                                 }
+
                                                 MessageStatus.SENT -> {
                                                     if (unread > 0) {
                                                         Text(
@@ -271,6 +279,7 @@ fun GroupChatScreen(
                                                         )
                                                     }
                                                 }
+
                                                 MessageStatus.FAILED -> {
                                                     Text(
                                                         text = "전송실패",
@@ -299,7 +308,10 @@ fun GroupChatScreen(
                                     fontSize = 12.sp,
                                     color = Color.Gray,
                                     modifier = Modifier
-                                        .padding(horizontal = 12.dp, vertical = 4.dp) // 배경 없이 여백만 유지
+                                        .padding(
+                                            horizontal = 12.dp,
+                                            vertical = 4.dp
+                                        ) // 배경 없이 여백만 유지
                                 )
                             }
                         }
@@ -312,7 +324,7 @@ fun GroupChatScreen(
                         .fillMaxWidth()
                         .padding(bottom = 50.dp) // 네비게이션 바 위에 표시
                 ) {
-                    CommentInputBar(
+                    InputBar(
                         value = state.inputText,
                         onValueChange = viewModel::onInputChange,
                         onSend = {
@@ -424,7 +436,8 @@ private fun formatChatTimeKST(raw: String?): String {
     // 2) epoch(초/밀리초) 숫자
     if (raw.all { it.isDigit() }) {
         val epoch = raw.toLong()
-        val instant = if (raw.length > 10) Instant.ofEpochMilli(epoch) else Instant.ofEpochSecond(epoch)
+        val instant =
+            if (raw.length > 10) Instant.ofEpochMilli(epoch) else Instant.ofEpochSecond(epoch)
         return instant.atZone(KST_ZONE).format(AMPM_HH_MM)
     }
 
