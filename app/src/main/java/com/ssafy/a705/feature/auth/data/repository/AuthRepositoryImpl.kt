@@ -33,6 +33,7 @@ class AuthRepositoryImpl @Inject constructor(
 
     override suspend fun logout() {
         remoteDataSource.logout()
+        tokenManager.clearServerTokens()
     }
 
     override suspend fun loginWithKakao(request: KakaoLoginRequest): JwtResponse {

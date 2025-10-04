@@ -41,7 +41,6 @@ import com.ssafy.a705.feature.record.diary.RecordViewModel
 import com.ssafy.a705.feature.record.map.ui.MapScreen
 import com.ssafy.a705.feature.auth.ui.screen.OnboardingIntroScreen
 import com.ssafy.a705.feature.auth.ui.screen.OnboardingScreen
-import com.ssafy.a705.feature.sign.PhoneVerifyScreen
 import com.ssafy.a705.feature.signup.SignupEmailResendScreen
 import com.ssafy.a705.feature.signup.SignupEmailVerifiedScreen
 import com.ssafy.a705.feature.signup.SignupEmailVerifyViewModel
@@ -251,21 +250,6 @@ fun NavGraph(
             WithPostWriteScreen(
                 postId = postId,   // Long?
                 navController = navController
-            )
-        }
-        //번호 인증
-        composable(
-            route = Screen.PhoneVerify.route,
-            arguments = listOf(navArgument("next") { nullable = true })
-        ) { backStackEntry ->
-            val next = backStackEntry.arguments?.getString("next")
-            PhoneVerifyScreen(
-                nextRoute = next,
-                onVerified = { route ->
-                    // 인증 성공 → 원래 가려던 곳으로 복귀
-                    navController.popBackStack()
-                    navController.navigate(route ?: Screen.With.route) { launchSingleTop = true }
-                }
             )
         }
         //동행 채팅

@@ -10,8 +10,6 @@ import com.kakao.sdk.user.UserApiClient
 import com.kakao.sdk.user.model.User
 import com.ssafy.a705.common.network.TokenManager
 import com.ssafy.a705.feature.auth.data.model.request.KakaoLoginRequest
-import com.ssafy.a705.feature.auth.data.source.AuthApi
-import com.ssafy.a705.feature.auth.domain.usecase.LogInUseCase
 import com.ssafy.a705.feature.auth.domain.usecase.LogInWithKakaoUseCase
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.CoroutineScope
@@ -47,7 +45,7 @@ class KakaoAuthManager @Inject constructor(
         onSuccess: (token: OAuthToken, profile: User?) -> Unit,
         onFailure: (Throwable) -> Unit
     ) {
-        val callback: (OAuthToken?, Throwable?) -> Unit = callback@ { token, error ->
+        val callback: (OAuthToken?, Throwable?) -> Unit = callback@{ token, error ->
             if (error != null || token == null) {
                 val msg = "카카오 로그인 실패: ${friendlyMessage(error)}"
                 Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
@@ -66,7 +64,9 @@ class KakaoAuthManager @Inject constructor(
                             if (e != null) cont.resumeWithException(e) else cont.resume(u!!)
                         }
                     }
-                } catch (_: Throwable) { null }
+                } catch (_: Throwable) {
+                    null
+                }
 
                 withContext(Dispatchers.Main) { onSuccess(token, me) }
             }
@@ -110,7 +110,9 @@ class KakaoAuthManager @Inject constructor(
                     if (e != null) cont.resumeWithException(e) else cont.resume(u!!)
                 }
             }
-        } catch (_: Throwable) { null }
+        } catch (_: Throwable) {
+            null
+        }
 
         // 4. 세션 저장
         val session = KakaoSession(
@@ -147,7 +149,8 @@ class KakaoAuthManager @Inject constructor(
                         withContext(Dispatchers.Main) { onSuccess(session) }
                     } catch (t: Throwable) {
                         withContext(Dispatchers.Main) {
-                            Toast.makeText(context, "서버 교환 실패: ${t.message}", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, "서버 교환 실패: ${t.message}", Toast.LENGTH_SHORT)
+                                .show()
                             onFailure(t)
                         }
                     }
@@ -159,6 +162,7 @@ class KakaoAuthManager @Inject constructor(
             }
         )
     }
+
     @Deprecated("Use requestKakaoToken() + exchangeWithServer() or login(activity, gender, name, ...)")
     fun login(
         activity: Activity,
@@ -204,7 +208,9 @@ class KakaoAuthManager @Inject constructor(
                     if (e != null) cont.resumeWithException(e) else cont.resume(u!!)
                 }
             }
-        } catch (_: Throwable) { null }
+        } catch (_: Throwable) {
+            null
+        }
 
         val updated = KakaoSession(
             kakaoId = me?.id ?: current.kakaoId,
@@ -250,6 +256,7 @@ class KakaoAuthManager @Inject constructor(
         tokenManager.clearKakaoTokens()
         sessionManager.clear()
     }
+
     private fun friendlyMessage(t: Throwable?): String {
         if (t == null) return "알 수 없는 오류"
 
@@ -267,6 +274,7 @@ class KakaoAuthManager @Inject constructor(
             else -> t.message ?: raw
         }
     }
+
     suspend fun unlinkKakao() {
         try {
             suspendCancellableCoroutine<Unit> { cont ->
