@@ -6,7 +6,7 @@ import com.ssafy.a705.feature.model.req.CommentRequest
 import javax.inject.Inject
 
 class BoardRemoteDataSource @Inject constructor(private val api: BoardApi) {
-    suspend fun getPost(cursorId: Long?) = api.getPost(cursorId);
+    suspend fun getPosts(cursorId: Long?) = api.getPosts(cursorId);
     suspend fun getPostDetail(postId: Long) = api.getPostDetail(postId)
     suspend fun writePost(request: WritePostRequest) = api.writePost(request)
     suspend fun updatePost(postId: Long, request: UpdatePostRequest) =

@@ -19,13 +19,4 @@ object MapModule {
         @Singleton
         abstract fun bindMapRepository(impl: MapRepositoryImpl): MapRepository
     }
-
-    @Module
-    @InstallIn(SingletonComponent::class)
-    object MapProvideModule {
-        @Provides
-        @Singleton
-        fun provideMapApi(retrofit: Retrofit): MapApi =
-            retrofit.create(MapApi::class.java)
-    }
 }

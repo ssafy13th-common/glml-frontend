@@ -6,10 +6,10 @@ import com.ssafy.a705.feature.model.req.CommentRequest
 import com.ssafy.a705.feature.board.data.model.request.UpdatePostRequest
 import com.ssafy.a705.feature.board.data.model.request.WritePostRequest
 import com.ssafy.a705.feature.board.data.model.response.CommentResponse
-import com.ssafy.a705.feature.board.data.model.response.CursorData
-import com.ssafy.a705.feature.board.data.model.response.WithPostDetailData
 import com.ssafy.a705.feature.board.data.model.response.WritePostResponse
 import com.ssafy.a705.common.network.ApiClient
+import com.ssafy.a705.feature.board.data.model.CursorData
+import com.ssafy.a705.feature.board.data.model.response.PostDetailResponse
 import javax.inject.Inject
 
 class WithService @Inject constructor(
@@ -20,7 +20,7 @@ class WithService @Inject constructor(
     // 1) 게시판 전체 조회
     suspend fun getWithPosts(cursorId: Long?): CursorData {
         // 1) 공통 에러 검사
-        val res: BaseResponse<CursorData> = api.getWithPosts(cursorId)
+        val res: BaseResponse<CursorData> = api.getPosts(cursorId)
         res.message?.let { throw ApiException(it) }
 
         // 2) data 자체가 null 인 경우만 예외로 처리 (이건 시스템 오류)
@@ -30,8 +30,8 @@ class WithService @Inject constructor(
     }
 
     // 2) 상세 조회
-    suspend fun getPostDetail(postId: Long): WithPostDetailData {
-        val res: BaseResponse<WithPostDetailData> = api.getPostDetail(postId) // ✅ 제네릭 변경
+    suspend fun getPostDetail(postId: Long): PostDetailResponse {
+        val res: BaseResponse<PostDetailResponse> = api.getPostDetail(postId) // ✅ 제네릭 변경
         res.message?.let { throw ApiException(it) }
         return res.data ?: throw ApiException("게시물 정보를 가져오는 중 문제가 발생했어요. 다시 시도해 주세요.")
     }

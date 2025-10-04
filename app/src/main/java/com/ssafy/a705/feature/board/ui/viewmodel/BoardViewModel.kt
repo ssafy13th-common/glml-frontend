@@ -34,7 +34,7 @@ class BoardViewModel @Inject constructor(
 
         viewModelScope.launch {
             try {
-                val data = boardRepository.getWithPosts(nextCursor)
+                val data = boardRepository.getPosts(nextCursor)
                 _postList.update { it + data.boards }
 
                 nextCursor = data.nextCursor
@@ -65,7 +65,7 @@ class BoardViewModel @Inject constructor(
             }
 
             try {
-                val data = boardRepository.getWithPosts(null)
+                val data = boardRepository.getPosts(null)
                 // 비우지 않고 덮어쓰기
                 _postList.value = data.boards
                 nextCursor = data.nextCursor

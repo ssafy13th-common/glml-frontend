@@ -1,20 +1,20 @@
 package com.ssafy.a705.feature.board.di
 
-import com.ssafy.a705.feature.board.data.source.BoardApi
+import com.ssafy.a705.feature.board.data.repository.BoardRepository
+import com.ssafy.a705.feature.board.data.repository.BoardRepositoryImpl
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import jakarta.inject.Singleton
-import retrofit2.Retrofit
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object BoardModule {
+abstract class BoardModule {
 
-    @Provides
+    @Binds
     @Singleton
-    fun provideBoardApi(retrofit: Retrofit): BoardApi {
-        return retrofit.create(BoardApi::class.java)
-    }
+    abstract fun bindBoardRepository(
+        impl: BoardRepositoryImpl
+    ): BoardRepository
 }

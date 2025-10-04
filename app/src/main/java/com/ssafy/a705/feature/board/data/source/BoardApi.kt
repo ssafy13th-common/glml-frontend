@@ -24,7 +24,7 @@ interface BoardApi {
     ): BaseResponse<PostDetailResponse>
 
     @GET("/v1/boards")
-    suspend fun getPost(
+    suspend fun getPosts(
         @Query("cursorId") cursorId: Long? = null
     ): BaseResponse<CursorData>
 

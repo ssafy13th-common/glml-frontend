@@ -75,17 +75,17 @@
         </activity>
 
         <service
-            android:name=".tracking.TrackingService"
+            android:name=".feature.tracking.TrackingService"
             android:exported="false"
             android:foregroundServiceType="location"/>
 
         <service
-            android:name=".group.latecheck.LiveLocationService"
+            android:name=".feature.group.latecheck.LiveLocationService"
             android:exported="false"
             android:foregroundServiceType="location"/>
 
         <receiver
-            android:name=".tracking.TrackingReceiver"
+            android:name=".feature.tracking.TrackingReceiver"
             android:exported="false">
             <!-- 앱 내부 브로드캐스트 수신 -->
             <intent-filter>
