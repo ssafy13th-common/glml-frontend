@@ -5,6 +5,7 @@ import com.ssafy.a705.common.network.sign.SignApi
 import com.ssafy.a705.common.network.verification.VerificationApi
 import com.ssafy.a705.common.network.with.PhoneRequirementInterceptor
 import com.ssafy.a705.feature.board.data.source.BoardApi
+import com.ssafy.a705.feature.board.data.source.CommentApi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -33,6 +34,7 @@ class ApiClient @Inject constructor(
         .build()
 
     val companionPostApi: BoardApi = retrofit.create(BoardApi::class.java)
+    val commentApi: CommentApi = retrofit.create(CommentApi::class.java)
     val verificationApi: VerificationApi = retrofit.create(VerificationApi::class.java)
     val signApi: SignApi = retrofit.create(SignApi::class.java)
     val mypageApi: MypageApi = retrofit.create(MypageApi::class.java)

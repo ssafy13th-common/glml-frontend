@@ -16,6 +16,7 @@ class WithService @Inject constructor(
     private val apiClient: ApiClient
 ) {
     private val api = apiClient.companionPostApi
+    private val commentApi = apiClient.commentApi
 
     // 1) 게시판 전체 조회
     suspend fun getWithPosts(cursorId: Long?): CursorData {
@@ -62,7 +63,7 @@ class WithService @Inject constructor(
     // 6) 댓글 작성
     suspend fun writeComment(postId: Long, comment: CommentRequest) {
         // 인터페이스가 BaseResponse<CommentResponse> 를 리턴한다면 그대로 받기
-        val res: BaseResponse<CommentResponse?> = api.writeComment(postId, comment)
+        val res: BaseResponse<CommentResponse?> = commentApi.writeComment(postId, comment)
 
         // 서버가 message에 에러를 담아줄 수 있으면 그때만 실패 처리
         if (!res.message.isNullOrBlank()) {
@@ -74,7 +75,7 @@ class WithService @Inject constructor(
 
     // 7) 댓글 수정
     suspend fun updateComment(boardId: Long, commentId: Long, request: CommentRequest) {
-        val res = api.updateComment(boardId, commentId, request)
+        val res = commentApi.updateComment(boardId, commentId, request)
         res.message?.let { throw ApiException(it) }
         // ✅ data 확인 불필요
     }
@@ -82,7 +83,7 @@ class WithService @Inject constructor(
 
     // 8) 댓글 삭제
     suspend fun deleteComment(boardId: Long, commentId: Long) {
-        val res = api.deleteComment(boardId, commentId)
+        val res = commentApi.deleteComment(boardId, commentId)
         res.message?.let { throw ApiException(it) }
         // ✅ data 확인 불필요
     }

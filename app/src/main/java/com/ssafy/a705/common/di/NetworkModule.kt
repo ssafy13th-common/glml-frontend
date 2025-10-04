@@ -16,6 +16,7 @@ import com.ssafy.a705.feature.group.latecheck.LateFeeStorage
 import com.ssafy.a705.feature.group.latecheck.LiveLocationWebSocketClient
 import com.ssafy.a705.feature.group.latecheck.LiveLocationRepository
 import com.ssafy.a705.common.network.sign.SessionManager
+import com.ssafy.a705.feature.board.data.source.CommentApi
 import com.ssafy.a705.feature.group.chat.GroupChatApi
 import com.ssafy.a705.feature.group.chat.GroupChatRepository
 import com.ssafy.a705.feature.group.chat.GroupChatWebSocketClient
@@ -85,6 +86,9 @@ object NetworkModule {
 
     @Provides @Singleton fun provideWithApi(retrofit: Retrofit): BoardApi =
         retrofit.create(BoardApi::class.java)
+
+    @Provides @Singleton fun provideCommentApi(retrofit: Retrofit): CommentApi =
+        retrofit.create(CommentApi::class.java)
 
     // 그룹 API도 공용 Retrofit 사용 (별도 2중 헤더/전용 Gson 제거)
     @Provides

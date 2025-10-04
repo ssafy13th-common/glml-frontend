@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ssafy.a705.common.network.base.ApiException
 import com.ssafy.a705.feature.board.data.model.response.PostData
-import com.ssafy.a705.feature.board.data.repository.BoardRepository
+import com.ssafy.a705.feature.board.domain.usecase.GetPostsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class BoardViewModel @Inject constructor(
-    private val boardRepository: BoardRepository
+    private val getPostsUseCase: GetPostsUseCase
 ) : ViewModel() {
 
     // 1) 에러 메시지 StateFlow 추가
@@ -34,7 +34,7 @@ class BoardViewModel @Inject constructor(
 
         viewModelScope.launch {
             try {
-                val data = boardRepository.getPosts(nextCursor)
+                val data = getPostsUseCase(nextCursor)
                 _postList.update { it + data.boards }
 
                 nextCursor = data.nextCursor
@@ -65,7 +65,7 @@ class BoardViewModel @Inject constructor(
             }
 
             try {
-                val data = boardRepository.getPosts(null)
+                val data = getPostsUseCase(nextCursor)
                 // 비우지 않고 덮어쓰기
                 _postList.value = data.boards
                 nextCursor = data.nextCursor

@@ -1,4 +1,4 @@
-package com.ssafy.a705.feature.board.ui.view
+package com.ssafy.a705.feature.board.ui.screen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable

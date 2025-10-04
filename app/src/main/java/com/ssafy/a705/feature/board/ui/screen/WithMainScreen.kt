@@ -1,4 +1,4 @@
-package com.ssafy.a705.feature.board.ui.view
+package com.ssafy.a705.feature.board.ui.screen
 
 import android.widget.Toast
 import androidx.compose.foundation.Image

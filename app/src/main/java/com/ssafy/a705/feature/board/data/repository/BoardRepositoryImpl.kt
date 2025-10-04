@@ -7,12 +7,12 @@ import com.ssafy.a705.feature.board.data.model.request.WritePostRequest
 import com.ssafy.a705.feature.board.data.model.response.PostDetailResponse
 import com.ssafy.a705.feature.board.data.model.response.WritePostResponse
 import com.ssafy.a705.feature.board.data.source.BoardRemoteDataSource
-import com.ssafy.a705.feature.model.req.CommentRequest
+import com.ssafy.a705.feature.board.domain.repository.BoardRepository
 import javax.inject.Inject
 
 class BoardRepositoryImpl @Inject constructor(
     private val remoteDataSource: BoardRemoteDataSource
-): BoardRepository {
+) : BoardRepository {
 
     override suspend fun getPosts(cursorId: Long?): CursorData {
         val res = remoteDataSource.getPosts(cursorId)
@@ -32,30 +32,14 @@ class BoardRepositoryImpl @Inject constructor(
         return res.data ?: throw ApiException("새 글을 등록하는 중에 문제가 생겼습니다.")
     }
 
-    override suspend fun updatePost(postId: Long, title: String, content: String) {
-        val res = remoteDataSource.updatePost(postId, UpdatePostRequest(title, content))
+    override suspend fun updatePost(postId: Long, post: UpdatePostRequest) {
+        val res = remoteDataSource.updatePost(postId, post)
         res.message?.let { throw ApiException(it) }
         // data는 null이어도 성공으로 간주
     }
 
     override suspend fun deletePost(postId: Long) {
         val res = remoteDataSource.deletePost(postId)
-        res.message?.let { throw ApiException(it) }
-    }
-
-    override suspend fun writeComment(postId: Long, comment: CommentRequest) {
-        val res = remoteDataSource.writeComment(postId, comment)
-        res.message?.let { throw ApiException(it) }
-        // 성공이면 Unit 반환
-    }
-
-    override suspend fun updateComment(boardId: Long, commentId: Long, request: CommentRequest) {
-        val res = remoteDataSource.updateComment(boardId, commentId, request)
-        res.message?.let { throw ApiException(it) }
-    }
-
-    override suspend fun deleteComment(boardId: Long, commentId: Long) {
-        val res = remoteDataSource.deleteComment(boardId, commentId)
         res.message?.let { throw ApiException(it) }
     }
 }
