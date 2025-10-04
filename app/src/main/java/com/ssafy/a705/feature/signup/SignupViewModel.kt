@@ -5,6 +5,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ssafy.a705.feature.model.resp.BasicResponse
 import com.ssafy.a705.common.network.TokenManager
+import com.ssafy.a705.common.network.base.ApiException
+import com.ssafy.a705.feature.auth.data.model.request.LoginRequest
+import com.ssafy.a705.feature.auth.domain.usecase.LogInUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -16,7 +19,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SignupViewModel @Inject constructor(
     private val repo: SignupRepository,
-    private val tokenManager: TokenManager
+    private val logInUseCase: LogInUseCase
 ) : ViewModel() {
 
     private var lastSignupRequest: SignupRequest? = null
@@ -117,54 +120,16 @@ class SignupViewModel @Inject constructor(
     fun login(email: String, password: String) {
         viewModelScope.launch {
             try {
-                val resp = repo.login(email, password)
-
-                val at = resp.headers()["Authorization"]
-                val rt = resp.headers()["Authorization-Refresh"]
-
-                if (resp.isSuccessful && !at.isNullOrBlank()) {
-                    val atClean = at.removePrefix("Bearer ").trim()
-                    val rtClean = rt?.removePrefix("Bearer ")?.trim()
-
-                    tokenManager.saveServerAccessToken(atClean)
-                    rtClean?.let { tokenManager.saveServerRefreshToken(it) }
-
-                    _loginOk.value = true
-                    _loginMsg.value = resp.body()?.message ?: "로그인 성공"
-                } else {
-                    val code = resp.code()
-                    val msg = resp.errorBody()?.string()?.let { s ->
-                        runCatching { JSONObject(s).optString("message", null) }.getOrNull()
-                    }
-
-                    if (msg.equals("인증되지 않은 이메일입니다.")) {
-                        // 미인증 사용자는 이메일 재전송 화면으로
-                        _loginNeedsVerifyEmail.value = email
-                    } else if(msg.equals("로그인 실패")) {
-                        _loginOk.value = false
-                        _loginMsg.value = "아이디 또는 비밀번호가 틀렸습니다."
-                    }
-                }
-            } catch (e: HttpException) {
-                val code = e.code()
-                val msg = e.response()?.errorBody()?.string()?.let { s ->
-                    runCatching { JSONObject(s).optString("message", null) }.getOrNull()
-                }
-
-                if (code == 401) {
-                    _loginNeedsVerifyEmail.value = email
-                    _loginOk.value = false
-                    _loginMsg.value = msg ?: "인증되지 않은 이메일입니다."
-                } else {
-                    _loginOk.value = false
-                    _loginMsg.value = msg ?: "로그인 실패"
-                }
-            } catch (_: Exception) {
+                logInUseCase(LoginRequest(email, password))
+                _loginOk.value = true
+                _loginMsg.value = "로그인 성공"
+            } catch (e: ApiException) {
                 _loginOk.value = false
-                _loginMsg.value = "네트워크 오류가 발생했습니다."
+                _loginMsg.value = e.message ?: "로그인 실패"
             }
         }
     }
+
 
     fun clearLoginState() {
         _loginOk.value = null

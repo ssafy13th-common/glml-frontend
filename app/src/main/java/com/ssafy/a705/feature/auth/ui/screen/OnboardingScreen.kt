@@ -1,4 +1,4 @@
-package com.ssafy.a705.feature.sign
+package com.ssafy.a705.feature.auth.ui.screen
 
 import android.app.Activity
 import android.content.ContextWrapper

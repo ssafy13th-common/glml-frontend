@@ -39,8 +39,8 @@ import com.ssafy.a705.feature.record.diary.RecordScreen
 import com.ssafy.a705.feature.record.diary.RecordUpdateScreen
 import com.ssafy.a705.feature.record.diary.RecordViewModel
 import com.ssafy.a705.feature.record.map.ui.MapScreen
-import com.ssafy.a705.feature.sign.OnboardingIntroScreen
-import com.ssafy.a705.feature.sign.OnboardingScreen
+import com.ssafy.a705.feature.auth.ui.screen.OnboardingIntroScreen
+import com.ssafy.a705.feature.auth.ui.screen.OnboardingScreen
 import com.ssafy.a705.feature.sign.PhoneVerifyScreen
 import com.ssafy.a705.feature.signup.SignupEmailResendScreen
 import com.ssafy.a705.feature.signup.SignupEmailVerifiedScreen

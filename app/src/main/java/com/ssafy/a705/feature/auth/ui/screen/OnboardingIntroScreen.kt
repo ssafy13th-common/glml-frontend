@@ -1,4 +1,4 @@
-package com.ssafy.a705.feature.sign
+package com.ssafy.a705.feature.auth.ui.screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box

@@ -4,8 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ssafy.a705.common.network.base.ApiException
 import com.ssafy.a705.common.network.sign.KakaoAuthManager
-import com.ssafy.a705.feature.auth.domain.usecase.LogoutUseCase
-import com.ssafy.a705.feature.auth.domain.usecase.WithdrawalUseCase
+import com.ssafy.a705.feature.auth.domain.usecase.LogOutUseCase
 import com.ssafy.a705.feature.board.data.model.MyCommentDto
 import com.ssafy.a705.feature.board.data.model.response.PostData
 import com.ssafy.a705.feature.board.domain.usecase.GetPostDetailUseCase
@@ -15,6 +14,7 @@ import com.ssafy.a705.feature.mypage.domain.usecase.GetMyCommentsUseCase
 import com.ssafy.a705.feature.mypage.domain.usecase.GetMyPostsUseCase
 import com.ssafy.a705.feature.mypage.domain.usecase.GetProfileUseCase
 import com.ssafy.a705.feature.mypage.domain.usecase.UpdateNicknameUseCase
+import com.ssafy.a705.feature.signup.SignupApi
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -29,8 +29,8 @@ class MyPageViewModel @Inject constructor(
     private val getMyCommentsUseCase: GetMyCommentsUseCase,
     private val updateNicknameUseCase: UpdateNicknameUseCase,
     private val getProfileUseCase: GetProfileUseCase,
-    private val logoutUseCase: LogoutUseCase,
-    private val withdrawalUseCase: WithdrawalUseCase
+    private val logoutUseCase: LogOutUseCase,
+    private val signupApi: SignupApi
 ) : ViewModel() {
 
     /** 공통 페이지 사이즈 */
@@ -176,7 +176,7 @@ class MyPageViewModel @Inject constructor(
         var ok = true
         try {
             // 1) 서버 회원탈퇴
-            withdrawalUseCase()
+            signupApi.withdrawal()
         } catch (_: Throwable) {
             ok = false
         } finally {

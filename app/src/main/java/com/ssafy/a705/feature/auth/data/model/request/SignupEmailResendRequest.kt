@@ -1,4 +1,4 @@
-package com.ssafy.a705.feature.signup
+package com.ssafy.a705.feature.auth.data.model.request
 
 data class SignupEmailResendRequest(
     val email: String
