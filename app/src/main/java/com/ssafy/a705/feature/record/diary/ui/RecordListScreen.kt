@@ -1,4 +1,4 @@
-package com.ssafy.a705.feature.record.diary
+package com.ssafy.a705.feature.record.diary.ui
 
 import android.util.Log
 import androidx.compose.foundation.clickable
@@ -22,6 +22,9 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import coil.request.ImageRequest
 import coil.imageLoader
 import com.ssafy.a705.common.components.HeaderRow
+import com.ssafy.a705.feature.record.diary.ui.components.RecordCard
+import com.ssafy.a705.feature.record.diary.ui.nav.RecordNavRoutes
+import com.ssafy.a705.feature.record.diary.ui.components.RecordTabBar
 import kotlin.math.min
 
 @Composable

@@ -17,7 +17,7 @@ import com.ssafy.a705.feature.group.latecheck.LiveLocationRepository
 import com.ssafy.a705.feature.group.latecheck.LiveLocationWebSocketClient
 import com.ssafy.a705.feature.auth.data.source.AuthApi
 import com.ssafy.a705.feature.mypage.data.source.MyPageApi
-import com.ssafy.a705.feature.record.diary.RecordApi
+import com.ssafy.a705.feature.record.diary.data.source.RecordApi
 import com.ssafy.a705.feature.record.map.data.remote.api.MapApi
 import com.ssafy.a705.feature.signup.SignupApi
 import com.ssafy.a705.feature.tracking.TrackingApi

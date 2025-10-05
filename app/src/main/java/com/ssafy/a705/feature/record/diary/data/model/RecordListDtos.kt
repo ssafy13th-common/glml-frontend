@@ -1,4 +1,4 @@
-package com.ssafy.a705.feature.record.diary
+package com.ssafy.a705.feature.record.diary.data.model
 
 data class RecordListItem(
     val id: Long,

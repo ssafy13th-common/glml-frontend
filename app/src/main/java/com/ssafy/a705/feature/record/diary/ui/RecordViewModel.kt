@@ -1,4 +1,4 @@
-package com.ssafy.a705.feature.record.diary
+package com.ssafy.a705.feature.record.diary.ui
 
 import android.content.Context
 import android.net.Uri
@@ -23,6 +23,16 @@ import kotlinx.coroutines.withContext
 import java.io.File
 import javax.inject.Inject
 import androidx.core.net.toUri
+import com.ssafy.a705.feature.record.diary.data.model.request.RecordCreateRequest
+import com.ssafy.a705.feature.record.diary.data.model.request.RecordUpdateRequest
+import com.ssafy.a705.feature.record.diary.domain.usecase.CreateRecordUseCase
+import com.ssafy.a705.feature.record.diary.domain.usecase.DeleteRecordUseCase
+import com.ssafy.a705.feature.record.diary.domain.usecase.GetDiaryDetailUseCase
+import com.ssafy.a705.feature.record.diary.domain.usecase.GetDiaryPagingUseCase
+import com.ssafy.a705.feature.record.diary.domain.usecase.UpdateRecordUseCase
+import com.ssafy.a705.feature.record.diary.ui.state.RecordCreateUiState
+import com.ssafy.a705.feature.record.diary.ui.state.RecordDetailUiState
+import com.ssafy.a705.feature.record.diary.ui.state.RecordUpdateUiState
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
@@ -32,42 +42,13 @@ import java.time.LocalDate
 import java.time.ZoneId
 import java.time.format.DateTimeParseException
 
-data class RecordCreateUiState(
-    val code: String = "",
-    val location: String = "",
-    val startDate: String? = null,
-    val endDate: String? = null,
-    val photoUris: List<Uri> = emptyList(),
-    val diary: String = "",
-    val isSaving: Boolean = false,
-    val error: String? = null
-)
-
-data class RecordDetailUiState(
-    val loading: Boolean = false,
-    val data: RecordDetailItem? = null,
-    val error: String? = null
-)
-
-data class RecordUpdateUiState(
-    val diaryId: Long? = null,
-
-    val locationCode: Int? = null,
-    val locationName: String? = null,
-    val startedAtDisplay: String = "", // yyyy.MM.dd
-    val endedAtDisplay: String = "",
-    val content: String = "",
-
-    val keepServerKeys: List<String> = mutableListOf(),
-    val newPhotoUris: List<Uri> = emptyList(),
-
-    val isSaving: Boolean = false,
-    val error: String? = null
-)
-
 @HiltViewModel
 class RecordViewModel @Inject constructor(
-    private val repository: RecordRepository,
+    private val createRecordUC: CreateRecordUseCase,
+    private val getPagingUC: GetDiaryPagingUseCase,
+    private val getDetailUC: GetDiaryDetailUseCase,
+    private val updateRecordUC: UpdateRecordUseCase,
+    private val deleteRecordUC: DeleteRecordUseCase,
     private val imageRepository: ImageRepository
 ) : ViewModel() {
     // mutableStateOf : Compose에서 값이 바뀌면 UI를 다시 그려주도록 "관찰 가능한 상태"로 만듦
@@ -95,7 +76,7 @@ class RecordViewModel @Inject constructor(
                     enablePlaceholders = false
                 ),
                 pagingSourceFactory = {
-                    repository.diaryPagingSource(
+                    getPagingUC(
                         pageSize = 10,
                         locationCode = code
                     )
@@ -181,7 +162,7 @@ class RecordViewModel @Inject constructor(
 
             try {
                 if (files.isEmpty()) {
-                    Log.d("RrecordMV", "사진 없어서 넘어감")
+                    Log.d("RrecordVM", "사진 없어서 넘어감")
                     val req = RecordCreateRequest(
                         locationCode = codeInt!!,
                         startedAt = started!!,
@@ -189,8 +170,8 @@ class RecordViewModel @Inject constructor(
                         content = s.diary.ifBlank { null },
                         imageUrls = emptyList()
                     )
-                    Log.d("RrecordMV", "req: $req")
-                    val newId = repository.createRecord(req).getOrThrow()
+                    Log.d("RrecordVM", "req: $req")
+                    val newId = createRecordUC(req).getOrThrow()
                     withContext(Dispatchers.Main) {
                         _createState.update { it.copy(isSaving = false) }
                         refreshList()
@@ -200,7 +181,7 @@ class RecordViewModel @Inject constructor(
                     return@launch
                 }
 
-                Log.d("RrecordMV", "사진 있음")
+                Log.d("RrecordVM", "사진 있음")
 
                 val nameMap: Map<String, File> = files
                     .mapIndexed { idx, f -> "${idx}.${f.extension.ifBlank { "jpg" }}".lowercase() to f }
@@ -234,7 +215,7 @@ class RecordViewModel @Inject constructor(
                     content = s.diary.ifBlank { null },
                     imageUrls = serverKeys
                 )
-                val newId = repository.createRecord(req).getOrThrow()
+                val newId = createRecordUC(req).getOrThrow()
 
                 withContext(Dispatchers.Main) {
                     _createState.update { it.copy(isSaving = false) }
@@ -281,7 +262,7 @@ class RecordViewModel @Inject constructor(
                             .toMap()
                         val presigns = imageRepository.fetchPresignedUrls(nameMap.keys.toList(), "diaries")
 
-                        Log.d("RrecordMV", "업데이트 사진 있음")
+                        Log.d("RrecordVM", "업데이트 사진 있음")
 
                         val semaphore = Semaphore(permits = 1)
                         // 업로드
@@ -329,7 +310,7 @@ class RecordViewModel @Inject constructor(
                 Log.d("RecordVM", "keep: ${req.keepImageUrls}\nnew: ${req.newImageUrls}")
 
                 // 서버 호출
-                repository.updateRecord(diaryId, req).getOrThrow()
+                updateRecordUC(diaryId, req).getOrThrow()
 
                 withContext(Dispatchers.Main) {
                     _updateState.update { it.copy(isSaving = false) }
@@ -393,7 +374,7 @@ class RecordViewModel @Inject constructor(
     fun loadDiaryDetail(id: Long) {
         _detail.value = RecordDetailUiState(loading = true)
         viewModelScope.launch(Dispatchers.IO) {
-            repository.getDiaryDetail(id)
+            getDetailUC(id)
                 .onSuccess {d ->
                     _detail.value = RecordDetailUiState(data = d)
                     _updateState.update {
@@ -419,7 +400,7 @@ class RecordViewModel @Inject constructor(
         onFinished: (Boolean, String?) -> Unit
     ) {
         viewModelScope.launch(Dispatchers.IO) {
-            val result = repository.deleteRecord(diaryId)
+            val result = deleteRecordUC(diaryId)
             withContext(Dispatchers.Main) {
                 result.onSuccess {
                     refreshList()

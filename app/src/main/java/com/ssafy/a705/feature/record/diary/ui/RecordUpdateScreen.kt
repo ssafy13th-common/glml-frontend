@@ -1,10 +1,11 @@
-package com.ssafy.a705.feature.record.diary
+package com.ssafy.a705.feature.record.diary.ui
 
 import android.app.DatePickerDialog
 import android.net.Uri
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.*
@@ -23,15 +24,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
+import coil.compose.SubcomposeAsyncImage
 import coil.imageLoader
 import coil.request.ImageRequest
+import com.ssafy.a705.R
 import com.ssafy.a705.common.components.HeaderRow
 import com.ssafy.a705.common.components.MenuAction
 import java.text.SimpleDateFormat
@@ -40,44 +45,30 @@ import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RecordCreateScreen(
+fun RecordUpdateScreen(
     recordViewModel: RecordViewModel,
-    navController: NavController
+    navController: NavController,
+    recordId: Long
 ) {
-    val state by recordViewModel.createState.collectAsState()
+    val state by recordViewModel.updateState.collectAsState()
     val focusManager = LocalFocusManager.current
     val context = LocalContext.current
 
-    val locationFromMap = navController.previousBackStackEntry
-        ?.savedStateHandle
-        ?.get<String>("location") ?: ""
-    val codeFromMap = navController.previousBackStackEntry
-        ?.savedStateHandle
-        ?.get<String>("code") ?: ""
-
-    val multiImagePickerLauncher = rememberLauncherForActivityResult(
-        // 사용자가 선택한 이미지만 접근 -> 따로 권한 설정 필요 X
-        contract = ActivityResultContracts.GetMultipleContents()
-    ) { uri: List<Uri> ->
-        if (uri.isNotEmpty()) {
-            recordViewModel.addPhotos(uri)
-        }
+    LaunchedEffect(recordId) {
+        recordViewModel.loadDiaryDetail(recordId)
     }
 
-    LaunchedEffect(locationFromMap) {
-        if (locationFromMap.isNotEmpty()) {
-            recordViewModel.setLocation(locationFromMap)
-        }
-
-        if (codeFromMap.isNotEmpty()) {
-            recordViewModel.setCode(codeFromMap)
-        }
+    // 갤러리 멀티 선택(새 사진 추가)
+    val multiImagePickerLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.GetMultipleContents()
+    ) { uris: List<Uri> ->
+        if (uris.isNotEmpty()) recordViewModel.addNewPhotos(uris)
     }
 
     Scaffold(
         topBar = {
             HeaderRow(
-                text = "기록하기",
+                text = "수정하기",
                 showText = true,
                 showLeftButton = true,
                 onLeftClick = {
@@ -87,22 +78,15 @@ fun RecordCreateScreen(
                 },
                 menuActions = listOf(
                     MenuAction(
-                        label = "등록",
+                        label = if (state.isSaving) "저장 중..." else "수정",
                         enabled = !state.isSaving,
                         onClick = {
-                            recordViewModel.createRecordsWithUploads(context) { ok, id, msg ->
-                                if (ok && id != null) {
-                                    Toast.makeText(context, "등록 완료", Toast.LENGTH_SHORT).show()
-
-                                    navController.navigate(RecordNavRoutes.List) {
-                                        // 뒤로가기로 접근 시 현재 작성한 지역이 색칠되지 않으므로 버튼으로만 접근하도록 삭제
-                                        popUpTo(RecordNavRoutes.Map) { inclusive = true }
-                                    }
-
-                                    navController.navigate("${RecordNavRoutes.Detail}/$id")
-
+                            recordViewModel.updateDiaryWithUploads(context) { ok, msg ->
+                                if (ok) {
+                                    Toast.makeText(context, "수정 완료", Toast.LENGTH_SHORT).show()
+                                    navController.popBackStack()
                                 } else {
-                                    Toast.makeText(context, msg ?: "등록 실패", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(context, msg ?: "수정 실패", Toast.LENGTH_SHORT).show()
                                 }
                             }
                         }
@@ -116,80 +100,53 @@ fun RecordCreateScreen(
                 .padding(innerPadding)
                 .padding(16.dp)
                 .fillMaxWidth()
-                .verticalScroll(rememberScrollState())  // 스크롤 가능하도록 구현
+                .verticalScroll(rememberScrollState())
                 .pointerInput(Unit) {
                     detectTapGestures { focusManager.clearFocus() }
                 }
         ) {
-            val context = LocalContext.current
-            val dateFormatter = SimpleDateFormat("yyyy.MM.dd", Locale.getDefault())
-            val calendar = Calendar.getInstance()
+            Text(
+                text = "장소: ${state.locationName}",
+                style = MaterialTheme.typography.bodyLarge
+            )
+            Spacer(Modifier.height(8.dp))
+
+            val dateFormatter = remember { SimpleDateFormat("yyyy.MM.dd", Locale.getDefault()) }
+            val calendar = remember { Calendar.getInstance() }
             var showStartPicker by remember { mutableStateOf(false) }
             var showEndPicker by remember { mutableStateOf(false) }
-
-            val density = LocalDensity.current
-            val cellPx = with(density) { 120.dp.roundToPx() }
-            val imageLoader = context.imageLoader
-
-            LaunchedEffect(state.photoUris, cellPx) {
-                if (cellPx <= 0 || state.photoUris.isEmpty()) return@LaunchedEffect
-                state.photoUris.forEach { uri ->
-                    imageLoader.enqueue(
-                        ImageRequest.Builder(context)
-                            .data(uri)
-                            .size(cellPx, cellPx)   // 다운샘플링
-                            .crossfade(false)
-                            .build()
-                    )
-                }
-            }
 
             if (showStartPicker) {
                 LaunchedEffect(Unit) {
                     DatePickerDialog(
                         context,
                         { _, year, month, day ->
-                            val date = Calendar.getInstance().apply {
-                                set(year, month, day)
-                            }
-                            recordViewModel.setStartDate(dateFormatter.format(date.time))
+                            val c = Calendar.getInstance().apply { set(year, month, day) }
+                            recordViewModel.setUpdateStartedAt(dateFormatter.format(c.time))
                             showStartPicker = false
                         },
                         calendar.get(Calendar.YEAR),
                         calendar.get(Calendar.MONTH),
                         calendar.get(Calendar.DAY_OF_MONTH)
-                    ).apply {
-                        setOnCancelListener { showStartPicker = false }
-                    }.show()
+                    ).apply { setOnCancelListener { showStartPicker = false } }.show()
                 }
             }
-
             if (showEndPicker) {
                 LaunchedEffect(Unit) {
                     DatePickerDialog(
                         context,
                         { _, year, month, day ->
-                            val date = Calendar.getInstance().apply {
-                                set(year, month, day)
-                            }
-                            recordViewModel.setEndDate(dateFormatter.format(date.time))
+                            val c = Calendar.getInstance().apply { set(year, month, day) }
+                            recordViewModel.setUpdateEndedAt(dateFormatter.format(c.time))
                             showEndPicker = false
                         },
                         calendar.get(Calendar.YEAR),
                         calendar.get(Calendar.MONTH),
                         calendar.get(Calendar.DAY_OF_MONTH)
-                    ).apply {
-                        setOnCancelListener { showEndPicker = false }
-                    }.show()
+                    ).apply { setOnCancelListener { showEndPicker = false } }.show()
                 }
             }
 
-            // 장소
-            Text(text = "장소: ${state.location}", style = MaterialTheme.typography.bodyLarge)
-
-            Spacer(modifier = Modifier.height(8.dp))
-
-            // 시작일
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
@@ -197,11 +154,10 @@ fun RecordCreateScreen(
                     .clickable { showStartPicker = true }
                     .padding(vertical = 8.dp)
             ) {
-                Text(text = "시작일: ${state.startDate ?: ""}", modifier = Modifier.weight(1f))
+                Text("시작일: ${state.startedAtDisplay}", modifier = Modifier.weight(1f))
                 Icon(Icons.Default.DateRange, contentDescription = "달력")
             }
 
-            // 도착일
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
@@ -209,11 +165,11 @@ fun RecordCreateScreen(
                     .clickable { showEndPicker = true }
                     .padding(vertical = 8.dp)
             ) {
-                Text(text = "도착일: ${state.endDate ?: ""}", modifier = Modifier.weight(1f))
+                Text("도착일: ${state.endedAtDisplay}", modifier = Modifier.weight(1f))
                 Icon(Icons.Default.DateRange, contentDescription = "달력")
             }
 
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(Modifier.height(8.dp))
 
             Row(
                 verticalAlignment = Alignment.CenterVertically,
@@ -229,26 +185,110 @@ fun RecordCreateScreen(
                 )
             }
 
+            Spacer(Modifier.height(4.dp))
+
+            val density = LocalDensity.current
+            val cellPx = with(density) { 120.dp.roundToPx() }
+            val imageLoader = context.imageLoader
+
+            val allItems: List<Any> = remember(state.keepServerKeys, state.newPhotoUris) {
+                buildList {
+                    addAll(state.keepServerKeys)
+                    addAll(state.newPhotoUris)
+                }
+            }
+
+            LaunchedEffect(allItems, cellPx) {
+                if (cellPx <= 0 || allItems.isEmpty()) return@LaunchedEffect
+                allItems.forEach { item ->
+                    imageLoader.enqueue(
+                        ImageRequest.Builder(context)
+                            .data(item)
+                            .size(cellPx, cellPx)   // 셀 픽셀 크기만큼 다운샘플해서 메모리/대역폭 절약
+                            .crossfade(false)
+                            .build()
+                    )
+                }
+            }
+
             LazyRow {
-                items(state.photoUris) { uri ->
+                items(state.keepServerKeys.toList(), key = { it }) { key ->
+                    Surface(
+                        shape = RoundedCornerShape(12.dp),
+                        modifier = Modifier
+                            .size(120.dp)
+                            .padding(4.dp)
+                    ) {
+                        Box {
+                            SubcomposeAsyncImage(
+                                model = remember(key, cellPx) {
+                                    ImageRequest.Builder(context)
+                                        .data(key)
+                                        .size(cellPx, cellPx)
+                                        .crossfade(false)
+                                        .build()
+                                },
+                                contentDescription = "서버 이미지",
+                                modifier = Modifier.fillMaxSize(),
+                                contentScale = ContentScale.Fit,
+                                loading = {
+                                    Box(
+                                        Modifier.fillMaxSize(),
+                                        contentAlignment = Alignment.Center
+                                    ) {
+                                        CircularProgressIndicator(strokeWidth = 2.dp)
+                                    }
+                                },
+                                error = {
+                                    Image(
+                                        painter = painterResource(R.drawable.default_img),
+                                        contentDescription = null,
+                                        modifier = Modifier.fillMaxSize(),
+                                        contentScale = ContentScale.Fit
+                                    )
+                                }
+                            )
+                            FilledIconButton(
+                                onClick = { recordViewModel.removeKeep(key) },
+                                modifier = Modifier
+                                    .align(Alignment.TopEnd)
+                                    .padding(6.dp)
+                                    .size(24.dp),
+                                shape = CircleShape,
+                                colors = IconButtonDefaults.filledIconButtonColors(
+                                    containerColor = Color(0xFFD1D1D1),
+                                    contentColor   = Color.White
+                                )
+                            ) {
+                                Icon(
+                                    Icons.Default.Close,
+                                    contentDescription = "삭제",
+                                    modifier = Modifier.size(18.dp)
+                                )
+                            }
+                        }
+                    }
+                }
+
+                items(state.newPhotoUris, key = { it }) { uri ->
                     Box {
                         val model = remember(uri, cellPx) {
                             ImageRequest.Builder(context)
                                 .data(uri)
-                                .size(cellPx, cellPx)    // ★ 생성 화면도 셀 픽셀로 리사이즈
+                                .size(cellPx, cellPx)
                                 .crossfade(false)
                                 .build()
                         }
 
                         AsyncImage(
                             model = model,
-                            contentDescription = "선택된 사진",
+                            contentDescription = "새로 추가된 사진",
                             modifier = Modifier
                                 .size(120.dp)
                                 .padding(4.dp)
                         )
                         FilledIconButton(
-                            onClick = { recordViewModel.removePhoto(uri) },
+                            onClick = { recordViewModel.removeNewPhoto(uri) },
                             modifier = Modifier
                                 .align(Alignment.TopEnd)
                                 .padding(6.dp)
@@ -269,17 +309,18 @@ fun RecordCreateScreen(
                 }
             }
 
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(Modifier.height(8.dp))
 
+            // --- 본문 ---
             OutlinedTextField(
-                value = state.diary,
-                onValueChange = recordViewModel::setDiary,
+                value = state.content,
+                onValueChange = recordViewModel::setUpdateContent,
                 modifier = Modifier
                     .fillMaxWidth()
                     .wrapContentHeight()
                     .heightIn(min = 160.dp),
-                placeholder = { Text("일기를 작성해 보세요!") },
-                maxLines = 8    // 텍스트박스 길이 제한 -> 해당 줄 이상 작성 시 내부 스크롤 적용
+                placeholder = { Text("일기를 수정해 보세요!") },
+                maxLines = 8
             )
         }
     }
@@ -291,10 +332,8 @@ fun RecordCreateScreen(
 
 @Composable
 private fun LoadingDialog(message: String) {
-    Dialog(onDismissRequest = { /* 백버튼/밖터치로 닫히지 않게 */ }) {
-        Surface(
-            shape = RoundedCornerShape(16.dp)
-        ) {
+    Dialog(onDismissRequest = { }) {
+        Surface(shape = androidx.compose.foundation.shape.RoundedCornerShape(16.dp)) {
             Column(
                 modifier = Modifier.padding(24.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
@@ -304,5 +343,13 @@ private fun LoadingDialog(message: String) {
                 Text(message)
             }
         }
+    }
+}
+
+private fun mergeImages(localUris: List<Uri>, remoteUrls: List<String>): List<Any> {
+    // Coil은 model = Any로 Uri/String 둘 다 지원
+    return buildList {
+        addAll(localUris)   // Uri
+        addAll(remoteUrls)  // String
     }
 }
