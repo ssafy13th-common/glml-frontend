@@ -1,4 +1,4 @@
-package com.ssafy.a705.feature.record.diary
+package com.ssafy.a705.feature.record.diary.ui
 
 import android.util.Log
 import android.widget.Toast
@@ -28,6 +28,8 @@ import coil.request.ImageRequest
 import com.ssafy.a705.R     // 자동으로 확인하지 못해 수동 추가함
 import com.ssafy.a705.common.components.HeaderRow
 import com.ssafy.a705.common.components.MenuAction
+import com.ssafy.a705.feature.record.diary.data.model.RecordDetailItem
+import com.ssafy.a705.feature.record.diary.ui.nav.RecordNavRoutes
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

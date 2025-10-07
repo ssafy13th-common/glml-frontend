@@ -1,4 +1,4 @@
-package com.ssafy.a705.feature.record.diary
+package com.ssafy.a705.feature.record.diary.ui.nav
 
 // object : 싱글톤 객체
 object RecordNavRoutes {

@@ -11,12 +11,10 @@ import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import javax.inject.Singleton
 
-object MapModule {
-    @Module
-    @InstallIn(SingletonComponent::class)
-    abstract class MapBindModule {
-        @Binds
-        @Singleton
-        abstract fun bindMapRepository(impl: MapRepositoryImpl): MapRepository
-    }
+@Module
+@InstallIn(SingletonComponent::class)
+abstract class MapModule {
+    @Binds
+    @Singleton
+    abstract fun bindMapRepository(impl: MapRepositoryImpl): MapRepository
 }

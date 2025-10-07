@@ -1,10 +1,12 @@
-package com.ssafy.a705.feature.record.diary
+package com.ssafy.a705.feature.record.diary.data.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import com.ssafy.a705.feature.record.diary.data.model.RecordListItem
+import com.ssafy.a705.feature.record.diary.data.source.RecordRemoteDataSource
 
 class RecordPagingSource(
-    private val api: RecordApi,
+    private val remote: RecordRemoteDataSource,
     private val pageSize: Int,
     private val locationCode: Int?
 ) : PagingSource<Long, RecordListItem>() {
@@ -20,7 +22,7 @@ class RecordPagingSource(
         val cursor = params.key
         val size = pageSize
 
-        val resp = api.getDiaries(cursorId = cursor, size = size, locationCode = locationCode)
+        val resp = remote.getDiaries(cursorId = cursor, size = size, locationCode = locationCode)
         resp.message?.let { throw Exception(it) }
 
         val itemsDto = resp.data?.diaries.orEmpty()

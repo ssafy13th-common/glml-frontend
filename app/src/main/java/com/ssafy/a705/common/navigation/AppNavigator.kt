@@ -16,7 +16,7 @@ import com.ssafy.a705.common.components.navBar.BottomTab
 import com.ssafy.a705.common.components.navBar.CustomBottomNavigationBar
 import com.ssafy.a705.common.components.navBar.GroupBottomNavigationBar
 import com.ssafy.a705.common.components.navBar.GroupBottomTab
-import com.ssafy.a705.feature.record.diary.RecordNavRoutes
+import com.ssafy.a705.feature.record.diary.ui.nav.RecordNavRoutes
 import com.ssafy.a705.feature.tracking.TrackingNavRoutes
 
 

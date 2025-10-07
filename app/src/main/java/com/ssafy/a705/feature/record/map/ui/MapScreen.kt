@@ -34,8 +34,8 @@ import com.ssafy.a705.common.components.ColorPickerDialog
 import com.ssafy.a705.common.components.HeaderRow
 import com.ssafy.a705.common.components.KakaoMapView
 import com.ssafy.a705.common.navigation.DoubleBackToExitHandler
-import com.ssafy.a705.feature.record.diary.RecordNavRoutes
-import com.ssafy.a705.feature.record.diary.RecordTabBar
+import com.ssafy.a705.feature.record.diary.ui.nav.RecordNavRoutes
+import com.ssafy.a705.feature.record.diary.ui.components.RecordTabBar
 import com.ssafy.a705.feature.record.geojson.GeoJsonDrawer
 import com.ssafy.a705.feature.record.geojson.GeoJsonLoader
 import com.ssafy.a705.feature.record.geojson.GeoJsonParser

@@ -1,4 +1,4 @@
-package com.ssafy.a705.feature.record.diary
+package com.ssafy.a705.feature.record.diary.ui.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
 import com.ssafy.a705.R
+import com.ssafy.a705.feature.record.diary.data.model.RecordListItem
 
 @Composable
 fun RecordCard(item: RecordListItem) {
