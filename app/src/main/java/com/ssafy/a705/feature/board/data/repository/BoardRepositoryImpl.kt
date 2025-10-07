@@ -1,10 +1,10 @@
 package com.ssafy.a705.feature.board.data.repository
 
 import com.ssafy.a705.common.network.base.ApiException
-import com.ssafy.a705.feature.board.data.model.CursorData
 import com.ssafy.a705.feature.board.data.model.request.UpdatePostRequest
 import com.ssafy.a705.feature.board.data.model.request.WritePostRequest
 import com.ssafy.a705.feature.board.data.model.response.PostDetailResponse
+import com.ssafy.a705.feature.board.data.model.response.PostListResponse
 import com.ssafy.a705.feature.board.data.model.response.WritePostResponse
 import com.ssafy.a705.feature.board.data.source.BoardRemoteDataSource
 import com.ssafy.a705.feature.board.domain.repository.BoardRepository
@@ -14,7 +14,7 @@ class BoardRepositoryImpl @Inject constructor(
     private val remoteDataSource: BoardRemoteDataSource
 ) : BoardRepository {
 
-    override suspend fun getPosts(cursorId: Long?): CursorData {
+    override suspend fun getPosts(cursorId: Long?): PostListResponse {
         val res = remoteDataSource.getPosts(cursorId)
         res.message?.let { throw ApiException(it) }
         return res.data ?: throw ApiException("게시글을 불러오는 중 문제가 생겼습니다.")
@@ -35,7 +35,6 @@ class BoardRepositoryImpl @Inject constructor(
     override suspend fun updatePost(postId: Long, post: UpdatePostRequest) {
         val res = remoteDataSource.updatePost(postId, post)
         res.message?.let { throw ApiException(it) }
-        // data는 null이어도 성공으로 간주
     }
 
     override suspend fun deletePost(postId: Long) {

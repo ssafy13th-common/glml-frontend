@@ -13,7 +13,6 @@ class CommentRepositoryImpl @Inject constructor(
     override suspend fun writeComment(postId: Long, comment: CommentRequest) {
         val res = remoteDataSource.writeComment(postId, comment)
         res.message?.let { throw ApiException(it) }
-        // 성공이면 Unit 반환
     }
 
     override suspend fun updateComment(boardId: Long, commentId: Long, request: CommentRequest) {
