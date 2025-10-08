@@ -1,8 +1,7 @@
 package com.ssafy.a705.feature.board.data.repository
 
 import com.ssafy.a705.common.network.base.ApiException
-import com.ssafy.a705.feature.board.data.model.request.UpdatePostRequest
-import com.ssafy.a705.feature.board.data.model.request.WritePostRequest
+import com.ssafy.a705.feature.board.data.model.request.PostRequest
 import com.ssafy.a705.feature.board.data.model.response.PostDetailResponse
 import com.ssafy.a705.feature.board.data.model.response.PostListResponse
 import com.ssafy.a705.feature.board.data.model.response.WritePostResponse
@@ -26,13 +25,13 @@ class BoardRepositoryImpl @Inject constructor(
         return res.data ?: throw ApiException("게시물을 불러오는 중 문제가 생겼습니다.")
     }
 
-    override suspend fun writePost(request: WritePostRequest): WritePostResponse {
+    override suspend fun writePost(request: PostRequest): WritePostResponse {
         val res = remoteDataSource.writePost(request)
         res.message?.let { throw ApiException(it) }
         return res.data ?: throw ApiException("새 글을 등록하는 중에 문제가 생겼습니다.")
     }
 
-    override suspend fun updatePost(postId: Long, post: UpdatePostRequest) {
+    override suspend fun updatePost(postId: Long, post: PostRequest) {
         val res = remoteDataSource.updatePost(postId, post)
         res.message?.let { throw ApiException(it) }
     }

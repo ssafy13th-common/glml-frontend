@@ -3,7 +3,7 @@ package com.ssafy.a705.feature.board.data.repository
 import com.ssafy.a705.common.network.base.ApiException
 import com.ssafy.a705.feature.board.data.source.CommentRemoteDataSource
 import com.ssafy.a705.feature.board.domain.repository.CommentRepository
-import com.ssafy.a705.feature.model.req.CommentRequest
+import com.ssafy.a705.feature.board.data.model.request.CommentRequest
 import javax.inject.Inject
 
 class CommentRepositoryImpl @Inject constructor(

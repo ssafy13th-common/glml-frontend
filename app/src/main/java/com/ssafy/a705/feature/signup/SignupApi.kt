@@ -2,7 +2,7 @@ package com.ssafy.a705.feature.signup
 
 import com.ssafy.a705.common.network.base.BaseResponse
 import com.ssafy.a705.feature.auth.data.model.request.SignupEmailResendRequest
-import com.ssafy.a705.feature.model.resp.BasicResponse
+import com.ssafy.a705.common.model.BasicResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE

@@ -2,7 +2,7 @@ package com.ssafy.a705.feature.signup
 
 import com.ssafy.a705.feature.auth.data.model.request.LoginRequest
 import com.ssafy.a705.feature.auth.data.model.request.SignupEmailResendRequest
-import com.ssafy.a705.feature.model.resp.BasicResponse
+import com.ssafy.a705.common.model.BasicResponse
 import javax.inject.Inject
 
 class SignupRepository @Inject constructor(

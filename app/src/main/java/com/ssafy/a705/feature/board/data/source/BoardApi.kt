@@ -1,8 +1,7 @@
 package com.ssafy.a705.feature.board.data.source
 
 import com.ssafy.a705.common.network.base.BaseResponse
-import com.ssafy.a705.feature.board.data.model.request.UpdatePostRequest
-import com.ssafy.a705.feature.board.data.model.request.WritePostRequest
+import com.ssafy.a705.feature.board.data.model.request.PostRequest
 import com.ssafy.a705.feature.board.data.model.response.PostDetailResponse
 import com.ssafy.a705.feature.board.data.model.response.PostListResponse
 import com.ssafy.a705.feature.board.data.model.response.WritePostResponse
@@ -29,13 +28,13 @@ interface BoardApi {
 
     @POST("v1/boards")
     suspend fun writePost(
-        @Body request: WritePostRequest
+        @Body request: PostRequest
     ): Response<BaseResponse<WritePostResponse>>
 
     @PUT("v1/boards/{id}")
     suspend fun updatePost(
         @Path("id") postId: Long,
-        @Body request: UpdatePostRequest
+        @Body request: PostRequest
     ): Response<BaseResponse<Unit>>
 
     @DELETE("v1/boards/{id}")

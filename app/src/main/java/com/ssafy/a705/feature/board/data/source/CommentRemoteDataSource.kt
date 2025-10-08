@@ -4,7 +4,7 @@ import android.util.Log
 import com.ssafy.a705.common.network.base.ApiException
 import com.ssafy.a705.common.network.base.BaseResponse
 import com.ssafy.a705.feature.board.data.model.response.CommentResponse
-import com.ssafy.a705.feature.model.req.CommentRequest
+import com.ssafy.a705.feature.board.data.model.request.CommentRequest
 import javax.inject.Inject
 
 class CommentRemoteDataSource @Inject constructor(private val api: CommentApi) {

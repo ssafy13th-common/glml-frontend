@@ -2,7 +2,7 @@ package com.ssafy.a705.feature.board.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ssafy.a705.feature.model.req.CommentRequest
+import com.ssafy.a705.feature.board.data.model.request.CommentRequest
 import com.ssafy.a705.feature.board.data.model.CommentDto
 import com.ssafy.a705.feature.board.data.model.response.CommentResponse
 import com.ssafy.a705.feature.board.data.model.WithPost

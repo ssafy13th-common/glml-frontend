@@ -3,9 +3,7 @@ package com.ssafy.a705.feature.board.ui.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ssafy.a705.common.network.base.ApiException
-import com.ssafy.a705.feature.board.data.model.request.UpdatePostRequest
-import com.ssafy.a705.feature.board.data.model.request.WritePostRequest
-import com.ssafy.a705.feature.board.domain.repository.BoardRepository
+import com.ssafy.a705.feature.board.data.model.request.PostRequest
 import com.ssafy.a705.feature.board.domain.usecase.GetPostDetailUseCase
 import com.ssafy.a705.feature.board.domain.usecase.UpdatePostUseCase
 import com.ssafy.a705.feature.board.domain.usecase.WritePostUseCase
@@ -49,7 +47,7 @@ class PostWriteViewModel @Inject constructor(
 
             try {
                 val response = writePostUseCase(
-                    post = WritePostRequest(_title.value, _content.value)
+                    post = PostRequest(_title.value, _content.value)
                 )
                 _writeSuccess.value = response.id
                 onSuccess(response.id)
@@ -81,7 +79,7 @@ class PostWriteViewModel @Inject constructor(
             try {
                 updatePostUseCase(
                     postId = postId,
-                    post = UpdatePostRequest(_title.value, _content.value)
+                    post = PostRequest(_title.value, _content.value)
                 )
                 _writeSuccess.value = postId
                 onSuccess()

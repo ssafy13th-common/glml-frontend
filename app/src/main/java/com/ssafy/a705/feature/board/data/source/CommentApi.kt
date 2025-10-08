@@ -2,7 +2,7 @@ package com.ssafy.a705.feature.board.data.source
 
 import com.ssafy.a705.common.network.base.BaseResponse
 import com.ssafy.a705.feature.board.data.model.response.CommentResponse
-import com.ssafy.a705.feature.model.req.CommentRequest
+import com.ssafy.a705.feature.board.data.model.request.CommentRequest
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE

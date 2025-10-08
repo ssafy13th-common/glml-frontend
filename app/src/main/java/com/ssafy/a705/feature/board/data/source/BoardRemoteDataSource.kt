@@ -3,8 +3,7 @@ package com.ssafy.a705.feature.board.data.source
 import android.util.Log
 import com.ssafy.a705.common.network.base.ApiException
 import com.ssafy.a705.common.network.base.BaseResponse
-import com.ssafy.a705.feature.board.data.model.request.UpdatePostRequest
-import com.ssafy.a705.feature.board.data.model.request.WritePostRequest
+import com.ssafy.a705.feature.board.data.model.request.PostRequest
 import com.ssafy.a705.feature.board.data.model.response.PostDetailResponse
 import com.ssafy.a705.feature.board.data.model.response.PostListResponse
 import com.ssafy.a705.feature.board.data.model.response.WritePostResponse
@@ -46,7 +45,7 @@ class BoardRemoteDataSource @Inject constructor(private val api: BoardApi) {
         }
     }
 
-    suspend fun writePost(request: WritePostRequest): BaseResponse<WritePostResponse> {
+    suspend fun writePost(request: PostRequest): BaseResponse<WritePostResponse> {
         try {
             val response = api.writePost(request)
             if (response.isSuccessful) {
@@ -63,7 +62,7 @@ class BoardRemoteDataSource @Inject constructor(private val api: BoardApi) {
         }
     }
 
-    suspend fun updatePost(postId: Long, request: UpdatePostRequest): BaseResponse<Unit> {
+    suspend fun updatePost(postId: Long, request: PostRequest): BaseResponse<Unit> {
         try {
             val response = api.updatePost(postId, request)
             if (response.isSuccessful) {

@@ -1,6 +1,6 @@
 package com.ssafy.a705.feature.record.map.data.remote.api
 
-import com.ssafy.a705.feature.model.resp.BasicResponse
+import com.ssafy.a705.common.model.BasicResponse
 import com.ssafy.a705.feature.record.map.data.remote.dto.MapResponse
 import com.ssafy.a705.feature.record.map.data.remote.dto.MapUpdateRequest
 import retrofit2.http.Body

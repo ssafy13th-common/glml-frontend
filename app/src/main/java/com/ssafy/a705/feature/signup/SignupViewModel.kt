@@ -3,7 +3,7 @@ package com.ssafy.a705.feature.signup
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ssafy.a705.feature.model.resp.BasicResponse
+import com.ssafy.a705.common.model.BasicResponse
 import com.ssafy.a705.common.network.TokenManager
 import com.ssafy.a705.common.network.base.ApiException
 import com.ssafy.a705.feature.auth.data.model.request.LoginRequest

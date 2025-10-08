@@ -1,4 +1,4 @@
-package com.ssafy.a705.feature.model.resp
+package com.ssafy.a705.common.model
 
 data class BasicResponse (
     val message: String?,

@@ -1,6 +1,6 @@
 package com.ssafy.a705.feature.record.diary.data.source
 
-import com.ssafy.a705.feature.model.resp.BasicResponse
+import com.ssafy.a705.common.model.BasicResponse
 import com.ssafy.a705.feature.record.diary.data.model.DiaryDetailResponse
 import com.ssafy.a705.feature.record.diary.data.model.DiaryListResponse
 import com.ssafy.a705.feature.record.diary.data.model.request.RecordCreateRequest

@@ -1,6 +1,6 @@
 package com.ssafy.a705.feature.tracking
 
-import com.ssafy.a705.feature.model.resp.BasicResponse
+import com.ssafy.a705.common.model.BasicResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE
